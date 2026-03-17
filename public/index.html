@@ -1,0 +1,2593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OFF TO THE RACES — The Miami Ferrari Rally</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=Oswald:wght@300;400;500;600;700;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0408;
+            --dark: #0f0a12;
+            --dark-card: #140e18;
+            --neon-pink: #ff2d95;
+            --neon-pink-glow: rgba(255,45,149,0.4);
+            --neon-cyan: #00e5ff;
+            --neon-cyan-glow: rgba(0,229,255,0.4);
+            --neon-purple: #7b2ff7;
+            --neon-purple-glow: rgba(123,47,247,0.3);
+            --sunset-orange: #ff6b35;
+            --sunset-yellow: #ffd700;
+            --ferrari-red: #dc2626;
+            --chrome: #c0c0c0;
+            --cream: #f0e6f6;
+            --white: #ffffff;
+            --gray: #8888aa;
+            --grid-color: rgba(123,47,247,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--cream);
+            overflow-x: hidden;
+        }
+
+        /* ── RETRO GRID BACKGROUND ── */
+        .retro-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+            -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10,4,8,0.7);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-bottom: 1px solid rgba(255,45,149,0.1);
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.7rem 2.5rem;
+            background: rgba(10,4,8,0.95);
+            border-bottom: 1px solid rgba(0,229,255,0.15);
+        }
+
+        .nav-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .nav-logo .logo-ground { color: var(--neon-cyan); text-shadow: 0 0 20px var(--neon-cyan-glow); }
+        .nav-logo .logo-to { color: var(--neon-pink); text-shadow: 0 0 20px var(--neon-pink-glow); font-size: 0.7rem; margin: 0 0.3rem; }
+        .nav-logo .logo-air { color: var(--neon-pink); text-shadow: 0 0 20px var(--neon-pink-glow); }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(240,230,246,0.5);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.55rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--neon-cyan); text-shadow: 0 0 15px var(--neon-cyan-glow); }
+
+        .nav-cta {
+            background: var(--neon-pink) !important;
+            color: var(--white) !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 1px;
+            text-shadow: none !important;
+            box-shadow: 0 0 20px var(--neon-pink-glow);
+        }
+
+        .nav-cta:hover {
+            background: #e0207a !important;
+            box-shadow: 0 0 30px var(--neon-pink-glow), 0 0 60px rgba(255,45,149,0.2);
+        }
+
+        /* ── HERO ── */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 750px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(255,45,149,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 80%, rgba(0,229,255,0.08) 0%, transparent 40%),
+                radial-gradient(ellipse at 80% 80%, rgba(123,47,247,0.1) 0%, transparent 40%),
+                linear-gradient(180deg, #1a0520 0%, var(--black) 50%, #080415 100%);
+        }
+
+        /* WHY: Sunset gradient band at the horizon line — classic Miami Vice look */
+        .hero-sunset {
+            position: absolute;
+            bottom: 25%;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(180deg,
+                transparent 0%,
+                rgba(255,107,53,0.06) 30%,
+                rgba(255,45,149,0.08) 50%,
+                rgba(123,47,247,0.06) 70%,
+                transparent 100%
+            );
+        }
+
+        .hero-image {
+            position: absolute;
+            inset: 0;
+            background: url('images/IMG_0410.jpg') center 25% / cover no-repeat;
+            opacity: 0.25;
+            mix-blend-mode: lighten;
+        }
+
+        /* WHY: Perspective grid floor — signature retrowave element */
+        .hero-floor {
+            position: absolute;
+            bottom: 0;
+            left: -20%;
+            right: -20%;
+            height: 35%;
+            background:
+                linear-gradient(rgba(0,229,255,0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,229,255,0.08) 1px, transparent 1px);
+            background-size: 80px 40px;
+            transform: perspective(400px) rotateX(60deg);
+            transform-origin: bottom center;
+            mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.6) 100%);
+            -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.6) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 2rem;
+            max-width: 900px;
+        }
+
+        .hero-date {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 20px var(--neon-cyan-glow);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3.5rem, 9vw, 7.5rem);
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-pink) 40%, var(--sunset-orange) 70%, var(--neon-cyan) 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 40px var(--neon-pink-glow)) drop-shadow(0 0 80px rgba(0,229,255,0.15));
+            animation: gradientShift 6s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 25px var(--neon-cyan-glow);
+            margin-bottom: 2rem;
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(240,230,246,0.6);
+            max-width: 520px;
+            margin: 0 auto 2.5rem;
+            font-weight: 300;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero-stat { text-align: center; }
+
+        .hero-stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--white);
+            text-shadow: 0 0 20px var(--neon-pink-glow), 0 0 40px rgba(255,45,149,0.15);
+        }
+
+        .hero-stat-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--neon-cyan);
+            margin-top: 0.3rem;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: transparent;
+            color: var(--neon-pink);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 700;
+            border: 2px solid var(--neon-pink);
+            box-shadow: 0 0 20px var(--neon-pink-glow), inset 0 0 20px rgba(255,45,149,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .hero-cta:hover {
+            background: var(--neon-pink);
+            color: var(--white);
+            box-shadow: 0 0 40px var(--neon-pink-glow), 0 0 80px rgba(255,45,149,0.2);
+            transform: translateY(-2px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-scroll span {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.5rem;
+            letter-spacing: 3px;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan-glow);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 35px;
+            background: linear-gradient(180deg, var(--neon-cyan), transparent);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* ── PARTICLES ── */
+        .particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--neon-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 6px var(--neon-cyan-glow);
+            animation: float linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.4; }
+            100% { transform: translateY(-100px) translateX(100px); opacity: 0; }
+        }
+
+        /* ── CINEMATIC QUOTE BREAK ── */
+        .quote-break {
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(180deg, var(--black) 0%, rgba(20,14,24,0.8) 50%, var(--black) 100%);
+            overflow: hidden;
+        }
+
+        .quote-break::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(255,45,149,0.06) 0%, transparent 70%);
+        }
+
+        .quote-break blockquote {
+            position: relative;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+            font-style: italic;
+            color: var(--cream);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.4;
+            text-shadow: 0 0 40px rgba(255,45,149,0.1);
+        }
+
+        .quote-break .quote-accent {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-style: normal;
+            font-size: 0.6rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--neon-pink);
+            text-shadow: 0 0 15px var(--neon-pink-glow);
+            margin-top: 1.5rem;
+        }
+
+        /* ── VIDEO SECTION ── */
+        .video-section {
+            background: var(--black);
+            padding: 5rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            padding: 3px;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple), var(--neon-cyan));
+            border-radius: 4px;
+            box-shadow: 0 0 40px var(--neon-pink-glow), 0 0 80px rgba(123,47,247,0.15);
+        }
+
+        .video-inner {
+            background: var(--black);
+            border-radius: 2px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+        }
+
+        .video-inner iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ── ANIMATED GRADIENT BORDER ── */
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glow-border {
+            position: relative;
+        }
+
+        .glow-border::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan), var(--neon-purple), var(--neon-pink));
+            background-size: 300% 100%;
+            animation: borderGlow 4s ease infinite;
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        /* ── COUNTDOWN ── */
+        .countdown-bar {
+            background: linear-gradient(90deg, var(--dark) 0%, rgba(255,45,149,0.06) 25%, rgba(123,47,247,0.08) 50%, rgba(0,229,255,0.06) 75%, var(--dark) 100%);
+            border-top: 1px solid rgba(0,229,255,0.15);
+            border-bottom: 1px solid rgba(255,45,149,0.15);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .countdown-inner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.55rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink-glow);
+        }
+
+        .countdown-digits {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .countdown-unit {
+            text-align: center;
+        }
+
+        .countdown-num {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 20px var(--neon-cyan-glow), 0 0 40px rgba(0,229,255,0.2);
+            line-height: 1;
+        }
+
+        .countdown-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.45rem;
+            letter-spacing: 2px;
+            color: var(--gray);
+            margin-top: 0.3rem;
+            text-transform: uppercase;
+        }
+
+        /* ── SHARED ── */
+        section { position: relative; z-index: 1; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .section-pad { padding: 6rem 0; }
+
+        .section-eyebrow {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--neon-pink);
+            text-shadow: 0 0 15px var(--neon-pink-glow);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--cream);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-shadow: 0 0 30px rgba(255,255,255,0.05);
+        }
+
+        .section-sub {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .neon-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-pink), var(--neon-cyan), var(--neon-purple), transparent);
+            opacity: 0.3;
+        }
+
+        /* ── PHOTO STRIP ── */
+        .photo-strip {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .photo-strip::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            border-top: 2px solid rgba(255,45,149,0.2);
+            border-bottom: 2px solid rgba(0,229,255,0.2);
+        }
+
+        .photo-strip-track {
+            display: flex;
+            width: max-content;
+            animation: carouselScroll 30s linear infinite;
+        }
+
+        /* WHY: Reverse direction on second strip for visual variety */
+        .photo-strip.reverse .photo-strip-track {
+            animation: carouselScrollReverse 35s linear infinite;
+        }
+
+        .photo-strip-item {
+            flex: 0 0 450px;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .photo-strip-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(1.2) contrast(1.05);
+            transition: transform 0.5s ease;
+        }
+
+        .photo-strip-item:hover img { transform: scale(1.08); }
+
+        .photo-strip-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,45,149,0.08), rgba(0,229,255,0.08));
+            mix-blend-mode: color;
+        }
+
+        @keyframes carouselScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes carouselScrollReverse {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        /* ── THE PLAYBOOK (Overview) ── */
+        .playbook { background: var(--dark); }
+
+        .playbook-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            margin-top: 3rem;
+        }
+
+        .playbook-card {
+            background: rgba(20,14,24,0.8);
+            padding: 2.5rem 1.5rem;
+            border: 1px solid rgba(123,47,247,0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .playbook-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .playbook-card:hover::before { opacity: 1; }
+
+        .playbook-card:hover {
+            border-color: rgba(0,229,255,0.15);
+            box-shadow: 0 0 30px rgba(0,229,255,0.05);
+        }
+
+        .playbook-act {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(180deg, rgba(255,45,149,0.15) 0%, rgba(255,45,149,0.03) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .playbook-card:hover .playbook-act {
+            background: linear-gradient(180deg, rgba(0,229,255,0.25) 0%, rgba(0,229,255,0.05) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .playbook-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--neon-cyan);
+            margin-bottom: 1rem;
+        }
+
+        .playbook-card p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.75;
+        }
+
+        /* ── ROUTE MAP ── */
+        .route-map-section {
+            background: var(--black);
+            padding: 5rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .route-map-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .route-map-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            padding: 3px;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-cyan), var(--neon-purple));
+            border-radius: 4px;
+            box-shadow:
+                0 0 30px var(--neon-pink-glow),
+                0 0 60px rgba(0,229,255,0.15),
+                0 0 100px rgba(123,47,247,0.1);
+        }
+
+        .route-map-inner {
+            background: var(--dark);
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .route-map-inner {
+            position: relative;
+        }
+
+        .route-map-inner img {
+            width: 100%;
+            display: block;
+        }
+
+        .map-stop-link { pointer-events: all; }
+        .map-stop-link g { cursor: pointer; }
+        .map-stop-link circle { transition: stroke-width 0.3s ease, filter 0.3s ease; }
+        .map-stop-link rect { transition: stroke-opacity 0.3s ease; }
+        .map-stop-link:hover circle { stroke-width: 4.5; filter: url(#glow2); }
+        .map-stop-link:hover rect { stroke-opacity: 0.5; }
+
+        /* WHY: SVG overlay draws the driving route on top of the watercolor map */
+        .route-overlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .route-path {
+            fill: none;
+            stroke: var(--neon-pink);
+            stroke-width: 4;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 0 6px var(--neon-pink-glow)) drop-shadow(0 0 12px rgba(255,45,149,0.25));
+            stroke-dasharray: 2000;
+            stroke-dashoffset: 2000;
+            transition: stroke-dashoffset 3s ease;
+        }
+
+        .route-path.drawn {
+            stroke-dashoffset: 0;
+        }
+
+        .route-path-glow {
+            fill: none;
+            stroke: var(--neon-pink);
+            stroke-width: 10;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0.12;
+            stroke-dasharray: 2000;
+            stroke-dashoffset: 2000;
+            transition: stroke-dashoffset 3s ease;
+        }
+
+        .route-path-glow.drawn {
+            stroke-dashoffset: 0;
+        }
+
+        .route-stop-dot {
+            fill: var(--neon-cyan);
+            filter: drop-shadow(0 0 4px var(--neon-cyan-glow));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .route-stop-dot.visible {
+            opacity: 1;
+        }
+
+        .route-stop-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 7px;
+            font-weight: 700;
+            fill: var(--white);
+            text-anchor: middle;
+            dominant-baseline: central;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .route-stop-label.visible {
+            opacity: 1;
+        }
+
+        .route-start-marker, .route-end-marker {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            fill: var(--neon-pink);
+            filter: drop-shadow(0 0 4px var(--neon-pink-glow));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .route-start-marker.visible, .route-end-marker.visible {
+            opacity: 1;
+        }
+
+        .route-map-caption {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .route-map-caption span {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+
+        .route-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .route-stat {
+            text-align: center;
+        }
+
+        .route-stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 15px var(--neon-cyan-glow);
+        }
+
+        .route-stat-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.45rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-top: 0.3rem;
+        }
+
+        /* ── ITINERARY ── */
+        .itinerary {
+            background: var(--dark);
+            position: relative;
+        }
+
+        .itinerary-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        /* Stop cards — alternating layout */
+        .stop-card {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 0;
+            margin-bottom: 2px;
+            min-height: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stop-card:nth-child(even) {
+            grid-template-columns: 3fr 1fr;
+        }
+
+        .stop-card:nth-child(even) .stop-card-content { order: 2; }
+        .stop-card:nth-child(even) .stop-card-visual { order: 1; }
+
+        .stop-card-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: rgba(20,14,24,0.6);
+            border: 1px solid rgba(123,47,247,0.06);
+        }
+
+        .stop-card-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.55rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink-glow);
+            margin-bottom: 0.5rem;
+        }
+
+        .stop-card-tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            border-radius: 2px;
+            width: fit-content;
+        }
+
+        .tag-photo { background: rgba(255,45,149,0.15); color: var(--neon-pink); border: 1px solid rgba(255,45,149,0.3); }
+        .tag-drive { background: rgba(255,107,53,0.15); color: var(--sunset-orange); border: 1px solid rgba(255,107,53,0.3); }
+        .tag-lifestyle { background: rgba(0,229,255,0.12); color: var(--neon-cyan); border: 1px solid rgba(0,229,255,0.25); }
+        .tag-aerial { background: rgba(123,47,247,0.15); color: #a78bfa; border: 1px solid rgba(123,47,247,0.3); }
+        .tag-finale { background: rgba(255,215,0,0.12); color: var(--sunset-yellow); border: 1px solid rgba(255,215,0,0.25); }
+
+        .stop-card-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--cream);
+            margin-bottom: 0.4rem;
+        }
+
+        .stop-card-location {
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--neon-cyan);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px var(--neon-cyan-glow);
+        }
+
+        .stop-card-desc {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .stop-card-shots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .shot-tag {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.45rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 0.3rem 0.6rem;
+            border: 1px solid rgba(0,229,255,0.15);
+            color: var(--neon-cyan);
+            border-radius: 1px;
+        }
+
+        .stop-card-visual {
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stop-card-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            inset: 0;
+            filter: saturate(1.1) contrast(1.05);
+            transition: transform 0.6s ease;
+        }
+
+        .stop-card:hover .stop-card-visual img {
+            transform: scale(1.03);
+        }
+
+        .stop-card-visual::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,45,149,0.06), rgba(0,229,255,0.06));
+            pointer-events: none;
+        }
+
+        .stop-visual-placeholder {
+            font-size: 8rem;
+            opacity: 0.2;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 0 30px var(--neon-pink-glow));
+        }
+
+        .stop-visual-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at center, rgba(123,47,247,0.06) 0%, transparent 70%),
+                var(--dark-card);
+        }
+
+        /* ── FULL BLEED ── */
+        .full-bleed {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .full-bleed img {
+            position: absolute;
+            inset: -10%;
+            width: 120%;
+            height: 120%;
+            object-fit: cover;
+            filter: saturate(1.2) contrast(1.05);
+        }
+
+        .full-bleed::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(135deg, rgba(255,45,149,0.15), rgba(0,229,255,0.1)),
+                rgba(10,4,8,0.5);
+        }
+
+        .full-bleed .overlay-text {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            padding: 0 2rem;
+        }
+
+        .full-bleed .overlay-text h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--cream);
+            text-shadow: 0 0 30px rgba(0,0,0,0.5);
+            margin-bottom: 0.75rem;
+        }
+
+        .full-bleed .overlay-text p {
+            font-size: 0.95rem;
+            color: rgba(240,230,246,0.7);
+            line-height: 1.7;
+        }
+
+        /* ── LOGISTICS / WHAT TO BRING ── */
+        .logistics { background: var(--black); }
+
+        .logistics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .logistics-card {
+            background: rgba(20,14,24,0.7);
+            border: 1px solid rgba(123,47,247,0.15);
+            border-top: 3px solid var(--neon-cyan);
+            padding: 2.5rem;
+            border-radius: 4px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logistics-card:hover {
+            border-top-color: var(--neon-pink);
+            box-shadow: 0 0 30px rgba(255,45,149,0.08);
+        }
+
+        .logistics-card:nth-child(2) { border-top-color: var(--neon-pink); }
+        .logistics-card:nth-child(2):hover { border-top-color: var(--neon-cyan); }
+        .logistics-card:nth-child(3) { border-top-color: #ff6b35; }
+        .logistics-card:nth-child(4) { border-top-color: var(--neon-purple); }
+
+        .logistics-card .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .logistics-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--cream);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logistics-card ul { list-style: none; }
+
+        .logistics-card li {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            padding-left: 2rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .logistics-card li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 1.2rem;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--neon-cyan);
+            box-shadow: 0 0 8px var(--neon-cyan-glow);
+        }
+
+        .logistics-card:nth-child(2) li::before { background: var(--neon-pink); box-shadow: 0 0 8px var(--neon-pink-glow); }
+        .logistics-card:nth-child(3) li::before { background: #ff6b35; box-shadow: 0 0 8px rgba(255,107,53,0.5); }
+        .logistics-card:nth-child(4) li::before { background: var(--neon-purple); box-shadow: 0 0 8px rgba(123,47,247,0.5); }
+
+        .logistics-card li:last-child { border-bottom: none; }
+
+        .logistics-card li strong {
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+
+        /* ── DRESS CODE ── */
+        .dresscode { background: var(--dark); }
+
+        .dresscode-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            margin-top: 3rem;
+        }
+
+        .dresscode-item {
+            background: rgba(20,14,24,0.5);
+            padding: 3rem 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(123,47,247,0.06);
+            transition: all 0.3s ease;
+        }
+
+        .dresscode-item:hover {
+            border-color: rgba(0,229,255,0.15);
+            box-shadow: 0 0 20px rgba(0,229,255,0.05);
+        }
+
+        .dresscode-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+
+        .dresscode-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--neon-pink);
+            margin-bottom: 0.4rem;
+        }
+
+        .dresscode-detail {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* ── RSVP ── */
+        .rsvp {
+            background: linear-gradient(180deg, var(--black) 0%, rgba(255,45,149,0.03) 50%, var(--black) 100%);
+            text-align: center;
+            padding: 7rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .rsvp::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(255,45,149,0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .rsvp-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 20px var(--neon-pink-glow));
+        }
+
+        .rsvp-sub {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .rsvp-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .rsvp-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+        }
+
+        .rsvp-input, .rsvp-select, .rsvp-textarea {
+            background: rgba(20,14,24,0.8);
+            border: 1px solid rgba(123,47,247,0.12);
+            padding: 0.85rem 1rem;
+            color: var(--cream);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .rsvp-input::placeholder { color: #444; }
+        .rsvp-input:focus, .rsvp-select:focus, .rsvp-textarea:focus {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0,229,255,0.1);
+        }
+
+        .rsvp-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+
+        .rsvp-textarea { resize: vertical; }
+
+        .rsvp-btn {
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--neon-pink), #e0207a);
+            color: var(--white);
+            border: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+            box-shadow: 0 0 25px var(--neon-pink-glow), 0 0 50px rgba(255,45,149,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rsvp-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .rsvp-btn:hover::after {
+            transform: translateX(100%);
+        }
+
+        .rsvp-btn:hover {
+            box-shadow: 0 0 40px var(--neon-pink-glow), 0 0 80px rgba(255,45,149,0.25);
+            transform: translateY(-3px);
+        }
+
+        .rsvp-note {
+            font-size: 0.65rem;
+            color: #444;
+            margin-top: 1.5rem;
+        }
+
+        .rsvp-success {
+            display: none;
+            padding: 2.5rem;
+            border: 1px solid rgba(0,229,255,0.2);
+            box-shadow: 0 0 30px rgba(0,229,255,0.1);
+            margin-top: 1rem;
+        }
+
+        .rsvp-success h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 15px var(--neon-cyan-glow);
+            margin-bottom: 0.75rem;
+        }
+
+        .rsvp-success p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--black);
+            border-top: 1px solid rgba(123,47,247,0.08);
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-logo .fl-pink { color: var(--neon-pink); text-shadow: 0 0 15px var(--neon-pink-glow); }
+        .footer-logo .fl-cyan { color: var(--neon-cyan); text-shadow: 0 0 15px var(--neon-cyan-glow); }
+
+        .footer-tagline {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-legal {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.5rem;
+            color: #333;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ── ANIMATIONS ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-content > * {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        .hero-content > *:nth-child(1) { animation-delay: 0.3s; }
+        .hero-content > *:nth-child(2) { animation-delay: 0.5s; }
+        .hero-content > *:nth-child(3) { animation-delay: 0.6s; }
+        .hero-content > *:nth-child(4) { animation-delay: 0.7s; }
+        .hero-content > *:nth-child(5) { animation-delay: 0.9s; }
+        .hero-content > *:nth-child(6) { animation-delay: 1.1s; }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* WHY: Neon flicker on section titles for retro feel */
+        @keyframes neonFlicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { text-shadow: 0 0 20px var(--neon-pink-glow), 0 0 40px rgba(255,45,149,0.15); }
+            20%, 24%, 55% { text-shadow: none; }
+        }
+
+        .flicker {
+            animation: neonFlicker 3s infinite alternate;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .playbook-grid { grid-template-columns: 1fr 1fr; }
+            .photo-strip { height: 200px; }
+            .photo-strip-item { flex: 0 0 300px; height: 200px; }
+            .dresscode-grid { grid-template-columns: 1fr 1fr; }
+            .logistics-grid { grid-template-columns: 1fr; }
+            .hero-stats { gap: 1.5rem; }
+
+            .stop-card,
+            .stop-card:nth-child(even) {
+                grid-template-columns: 1fr;
+            }
+
+            .stop-card:nth-child(even) .stop-card-content { order: 1; }
+            .stop-card:nth-child(even) .stop-card-visual { order: 2; }
+
+            .stop-card-visual { min-height: 300px; }
+        }
+
+        @media (max-width: 600px) {
+            .playbook-grid { grid-template-columns: 1fr; }
+            .dresscode-grid { grid-template-columns: 1fr 1fr; }
+            .rsvp-row { grid-template-columns: 1fr; }
+            .route-stats { flex-direction: column; gap: 1rem; }
+            .countdown-inner { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- RETRO GRID -->
+    <div class="retro-grid"></div>
+
+    <!-- NAV -->
+    <nav id="nav">
+        <div class="nav-logo">
+            <span class="logo-ground">Off</span>
+            <span class="logo-to">to the</span>
+            <span class="logo-air">Races</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#playbook">Playbook</a></li>
+            <li><a href="#route">Route</a></li>
+            <li><a href="#stops">Stops</a></li>
+            <li><a href="#logistics">Logistics</a></li>
+            <li><a href="#rsvp" class="nav-cta">RSVP</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-sunset"></div>
+        <div class="hero-image"></div>
+        <div class="hero-floor"></div>
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <p class="hero-date">Eric's Bachelor Rally &bull; Miami &bull; 2026</p>
+            <h1 class="hero-title">Off to the<br>Races</h1>
+            <p class="hero-subtitle">Off to the Races &mdash; The Miami Ferrari Rally</p>
+            <p class="hero-desc">
+                Seven red Ferraris. Black tuxedos. Helicopter overhead. Yacht on the bay.
+                Seaplane at sunset. From ground to water to sky — this is the rally.
+            </p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">7</div>
+                    <div class="hero-stat-label">Ferraris</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">19.3</div>
+                    <div class="hero-stat-label">Miles</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">11</div>
+                    <div class="hero-stat-label">Iconic Shots</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">1</div>
+                    <div class="hero-stat-label">Legend</div>
+                </div>
+            </div>
+            <a href="#rsvp" class="hero-cta">Confirm Your Seat</a>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- COUNTDOWN -->
+    <div class="countdown-bar">
+        <div class="countdown-inner">
+            <span class="countdown-label">Off to the Races In</span>
+            <div class="countdown-digits" id="countdown">
+                <div class="countdown-unit">
+                    <div class="countdown-num" id="cd-days">--</div>
+                    <div class="countdown-text">Days</div>
+                </div>
+                <div class="countdown-unit">
+                    <div class="countdown-num" id="cd-hrs">--</div>
+                    <div class="countdown-text">Hours</div>
+                </div>
+                <div class="countdown-unit">
+                    <div class="countdown-num" id="cd-min">--</div>
+                    <div class="countdown-text">Min</div>
+                </div>
+                <div class="countdown-unit">
+                    <div class="countdown-num" id="cd-sec">--</div>
+                    <div class="countdown-text">Sec</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHOTO STRIP -->
+    <div class="photo-strip">
+        <div class="photo-strip-track">
+            <div class="photo-strip-item"><img src="images/IMG_0637-2.jpg" alt="Ferrari at Curated" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/IMG_0749.jpg" alt="Pardo yacht aerial" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/rendered-image.jpg" alt="Curated showroom from above" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/IMG_0641-2.jpg" alt="Ferrari lineup" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/curated-new.jpg" alt="Curated showroom" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/IMG_0753.jpg" alt="Pardo yacht on bay" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/IMG_0642-2.jpg" alt="Supercar collection" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/IMG_8146.jpg" alt="The Moore" loading="lazy"></div>
+            <!-- WHY: Duplicate set for seamless infinite loop — when first set scrolls off, second takes over -->
+            <div class="photo-strip-item"><img src="images/IMG_0637-2.jpg" alt="Ferrari at Curated" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/IMG_0749.jpg" alt="Pardo yacht aerial" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/rendered-image.jpg" alt="Curated showroom from above" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/IMG_0641-2.jpg" alt="Ferrari lineup" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/curated-new.jpg" alt="Curated showroom" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/IMG_0753.jpg" alt="Pardo yacht on bay" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/IMG_0642-2.jpg" alt="Supercar collection" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/IMG_8146.jpg" alt="The Moore" loading="lazy"></div>
+        </div>
+    </div>
+
+    <!-- CINEMATIC QUOTE -->
+    <div class="quote-break reveal">
+        <blockquote>
+            "One last ride with the boys before forever begins. Red Ferraris. Miami sun. A day we'll never forget."
+            <span class="quote-accent">— Off to the Races, Miami 2026</span>
+        </blockquote>
+    </div>
+
+    <!-- PLAYBOOK -->
+    <section class="playbook section-pad" id="playbook">
+        <div class="container">
+            <div class="reveal" style="text-align:center;">
+                <p class="section-eyebrow flicker">The Playbook</p>
+                <h2 class="section-title">Four Acts. One Unforgettable Day.</h2>
+                <p class="section-sub" style="margin:0 auto;">
+                    A celebration with your closest friends before the biggest day of your life.
+                    From sunrise to sunset — here's how it all unfolds.
+                </p>
+            </div>
+            <div class="playbook-grid reveal">
+                <div class="playbook-card">
+                    <div class="playbook-act">I</div>
+                    <h3>The Opening Shot</h3>
+                    <p>Seven identical Ferraris lined up. Black tuxedos. Doors open in unison. Engine revs echo off the building. The drone goes up. The convoy is born.</p>
+                </div>
+                <div class="playbook-card">
+                    <div class="playbook-act">II</div>
+                    <h3>The Lifestyle</h3>
+                    <p>Will's waterfront mansion. Poolside cool. Then board the Pardo yacht — on deck, at the helm, Biscayne Bay stretching behind you. Class and relaxation on the water.</p>
+                </div>
+                <div class="playbook-card">
+                    <div class="playbook-act">III</div>
+                    <h3>The Drive</h3>
+                    <p>79th Street wide open. Seven Ferraris at speed with a helicopter tracking overhead. Ocean Drive slow cruise past the Art Deco strip. MacArthur Causeway at golden hour. This is the footage.</p>
+                </div>
+                <div class="playbook-card">
+                    <div class="playbook-act">IV</div>
+                    <h3>The Ascent</h3>
+                    <p>Padel in tuxedos. Park the Ferraris in formation at the seaplane base. Take flight over every mile you just conquered. Land. Walk into Curated surrounded by legends. Ground to air — complete.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GROUND TO AIR CONCEPT -->
+    <div class="neon-divider"></div>
+    <section class="section-pad" style="background:var(--dark); position:relative; z-index:1; overflow:hidden;">
+        <div class="container">
+            <div class="reveal" style="text-align:center; margin-bottom:4rem;">
+                <p class="section-eyebrow flicker">The Concept</p>
+                <h2 class="section-title" style="background:linear-gradient(135deg, var(--neon-cyan), var(--neon-pink), var(--sunset-orange)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; filter:drop-shadow(0 0 30px var(--neon-pink-glow));">Off to the Races</h2>
+                <p class="section-sub" style="margin:0 auto; max-width:650px;">
+                    Three elements. One day. The rally moves from asphalt to water to sky —
+                    every mode of Miami, captured in motion.
+                </p>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px;" class="reveal">
+                <div style="background:rgba(20,14,24,0.8); padding:3rem 2rem; text-align:center; border:1px solid rgba(255,45,149,0.08); position:relative; overflow:hidden;">
+                    <div style="font-size:3.5rem; margin-bottom:1.5rem; filter:drop-shadow(0 0 15px var(--neon-pink-glow));">&#127950;</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1.1rem; font-weight:800; letter-spacing:4px; text-transform:uppercase; color:var(--neon-pink); text-shadow:0 0 15px var(--neon-pink-glow); margin-bottom:0.75rem;">Ground</h3>
+                    <p style="font-size:0.9rem; color:var(--gray); line-height:1.7;">Seven red Ferraris in convoy formation. Causeways at speed. Ocean Drive slow cruise. Rolling shots with helicopter and drone above.</p>
+                </div>
+                <div style="background:rgba(20,14,24,0.8); padding:3rem 2rem; text-align:center; border:1px solid rgba(0,229,255,0.08); position:relative; overflow:hidden;">
+                    <div style="font-size:3.5rem; margin-bottom:1.5rem; filter:drop-shadow(0 0 15px var(--neon-cyan-glow));">&#128674;</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1.1rem; font-weight:800; letter-spacing:4px; text-transform:uppercase; color:var(--neon-cyan); text-shadow:0 0 15px var(--neon-cyan-glow); margin-bottom:0.75rem;">Water</h3>
+                    <p style="font-size:0.9rem; color:var(--gray); line-height:1.7;">Board the Pardo yacht on Biscayne Bay. On deck, at the helm, the Miami skyline stretching behind you. Class on the water.</p>
+                </div>
+                <div style="background:rgba(20,14,24,0.8); padding:3rem 2rem; text-align:center; border:1px solid rgba(123,47,247,0.08); position:relative; overflow:hidden;">
+                    <div style="font-size:3.5rem; margin-bottom:1.5rem; filter:drop-shadow(0 0 15px var(--neon-purple-glow));">&#9992;&#65039;</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1.1rem; font-weight:800; letter-spacing:4px; text-transform:uppercase; color:#a78bfa; text-shadow:0 0 15px var(--neon-purple-glow); margin-bottom:0.75rem;">Air</h3>
+                    <p style="font-size:0.9rem; color:var(--gray); line-height:1.7;">Seaplane flight over the entire route you just conquered. See your day from the sky. The rally comes full circle — ground to air.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="neon-divider"></div>
+
+    <!-- ROUTE MAP -->
+    <section class="route-map-section" id="route">
+        <div class="container">
+            <div class="route-map-header reveal">
+                <p class="section-eyebrow">The Route</p>
+                <h2 class="section-title">19.3 Miles of Miami</h2>
+                <p class="section-sub" style="margin:0 auto;">
+                    From The Moore down through Miami Beach, across the causeways,
+                    through South Beach, up to Watson Island, and into the Design District.
+                </p>
+            </div>
+            <div class="route-map-container reveal" id="routeMapContainer" style="max-width:900px;">
+                <div class="route-map-inner" style="background:#0a1425;">
+                    <svg viewBox="0 0 1000 1300" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;border-radius:2px;">
+                        <defs>
+                            <filter id="glow"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                            <filter id="glow2"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                            <pattern id="wv" width="80" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(-3)">
+                                <path d="M0 7 Q20 2 40 7 Q60 12 80 7" stroke="rgba(0,229,255,0.18)" stroke-width="0.8" fill="none"/>
+                            </pattern>
+                            <linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#ff2d95"/><stop offset="100%" stop-color="#ff2d95"/>
+                            </linearGradient>
+                        </defs>
+
+                        <!-- WATER — light blue to contrast with land -->
+                        <rect width="1000" height="1300" fill="#1a3a5c"/>
+                        <rect x="200" y="0" width="440" height="1300" fill="#1e4468"/>
+                        <rect x="200" y="0" width="440" height="1300" fill="url(#wv)"/>
+                        <rect x="800" y="0" width="200" height="1300" fill="#1e4468"/>
+                        <rect x="800" y="0" width="200" height="1300" fill="url(#wv)"/>
+
+                        <!-- MAINLAND -->
+                        <path d="M0 0 L210 0 L210 350 Q215 380 210 420 L205 500 Q200 600 205 700 L215 900 L210 1000 L215 1300 L0 1300 Z" fill="#0f2818" stroke="rgba(0,229,255,0.2)" stroke-width="0.8"/>
+
+                        <!-- MIAMI BEACH ISLAND — accurate narrow shape -->
+                        <path d="M635 30 Q660 20 700 18 Q740 16 770 22 Q790 30 795 55 L798 120 L796 300 L794 500 L796 700 L798 850 L796 950 Q794 1000 788 1040 Q780 1080 755 1100 Q730 1115 705 1110 Q680 1105 665 1080 Q650 1050 640 1000 L638 900 L636 700 L635 500 L634 300 Z" fill="#0f2818" stroke="rgba(0,229,255,0.2)" stroke-width="0.8"/>
+
+                        <!-- WATSON ISLAND -->
+                        <path d="M340 810 Q365 795 400 800 Q430 805 440 820 Q445 835 430 845 Q410 855 380 852 Q350 848 340 835 Z" fill="#0f2818" stroke="rgba(0,229,255,0.2)" stroke-width="0.8"/>
+
+                        <!-- DODGE ISLAND / PORT -->
+                        <path d="M380 890 Q420 880 470 885 Q510 890 520 900 Q515 910 480 915 Q440 918 400 912 Q380 905 380 890 Z" fill="#0f2818" stroke="rgba(0,229,255,0.15)" stroke-width="0.6"/>
+
+                        <!-- VENETIAN ISLANDS (small) -->
+                        <ellipse cx="430" cy="550" rx="18" ry="10" fill="#0d0818" stroke="rgba(0,229,255,0.04)" stroke-width="0.5"/>
+                        <ellipse cx="475" cy="545" rx="16" ry="9" fill="#0d0818" stroke="rgba(0,229,255,0.04)" stroke-width="0.5"/>
+                        <ellipse cx="520" cy="540" rx="15" ry="8" fill="#0d0818" stroke="rgba(0,229,255,0.04)" stroke-width="0.5"/>
+
+                        <!-- STREET GRID: Miami Beach — N-S roads -->
+                        <!-- Alton Road (west) -->
+                        <line x1="655" y1="40" x2="655" y2="1080" stroke="rgba(255,255,255,0.04)" stroke-width="1.5"/>
+                        <!-- West Ave -->
+                        <line x1="670" y1="500" x2="670" y2="1080" stroke="rgba(255,255,255,0.025)" stroke-width="1"/>
+                        <!-- Collins Ave -->
+                        <line x1="715" y1="30" x2="720" y2="1090" stroke="rgba(255,255,255,0.05)" stroke-width="1.5"/>
+                        <!-- Ocean Drive -->
+                        <line x1="755" y1="500" x2="758" y2="1090" stroke="rgba(255,255,255,0.04)" stroke-width="1.5"/>
+                        <!-- Indian Creek Dr -->
+                        <line x1="690" y1="30" x2="690" y2="500" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+
+                        <!-- STREET GRID: Cross streets -->
+                        <g stroke="rgba(255,255,255,0.025)" stroke-width="0.8">
+                            <line x1="635" y1="90" x2="795" y2="90"/>  <!-- ~71st -->
+                            <line x1="635" y1="140" x2="795" y2="140"/> <!-- ~63rd -->
+                            <line x1="635" y1="220" x2="795" y2="220"/> <!-- ~53rd -->
+                            <line x1="635" y1="310" x2="795" y2="310"/> <!-- ~47th -->
+                            <line x1="635" y1="420" x2="795" y2="420"/> <!-- ~41st / 195 landing -->
+                            <line x1="635" y1="520" x2="795" y2="520"/> <!-- ~33rd -->
+                            <line x1="635" y1="600" x2="795" y2="600"/> <!-- ~26th -->
+                            <line x1="635" y1="680" x2="795" y2="680"/> <!-- ~21st / Lincoln -->
+                            <line x1="635" y1="760" x2="795" y2="760"/> <!-- ~15th -->
+                            <line x1="635" y1="850" x2="795" y2="850"/> <!-- ~8th -->
+                            <line x1="635" y1="930" x2="795" y2="930"/> <!-- ~5th / Dade -->
+                            <line x1="635" y1="1000" x2="795" y2="1000"/> <!-- ~1st -->
+                        </g>
+
+                        <!-- MAINLAND STREETS -->
+                        <g stroke="rgba(255,255,255,0.025)" stroke-width="0.8">
+                            <line x1="0" y1="420" x2="210" y2="420"/>  <!-- NE 36th / 195 approach -->
+                            <line x1="0" y1="550" x2="210" y2="550"/>
+                            <line x1="0" y1="700" x2="210" y2="700"/>
+                            <line x1="100" y1="0" x2="100" y2="1300"/> <!-- NE 2nd Ave -->
+                            <line x1="150" y1="0" x2="150" y2="1300"/> <!-- Biscayne Blvd -->
+                        </g>
+
+                        <!-- CAUSEWAYS -->
+                        <!-- I-195 / Julia Tuttle -->
+                        <line x1="210" y1="420" x2="635" y2="420" stroke="rgba(255,255,255,0.1)" stroke-width="5"/>
+                        <!-- MacArthur Causeway -->
+                        <path d="M210 870 Q280 855 390 825" stroke="rgba(255,255,255,0.08)" stroke-width="5" fill="none"/>
+                        <path d="M390 825 Q500 870 640 935" stroke="rgba(255,255,255,0.08)" stroke-width="5" fill="none"/>
+                        <!-- Venetian Causeway (faint) -->
+                        <path d="M210 550 Q350 545 430 550 Q500 542 635 535" stroke="rgba(255,255,255,0.03)" stroke-width="2" fill="none"/>
+                        <!-- 79th St Causeway (faint) -->
+                        <line x1="210" y1="55" x2="635" y2="55" stroke="rgba(255,255,255,0.04)" stroke-width="3"/>
+
+                        <!-- STREET LABELS -->
+                        <text x="420" y="412" fill="rgba(255,255,255,0.18)" font-family="Orbitron,sans-serif" font-size="9" text-anchor="middle" letter-spacing="3" font-weight="600">I-195</text>
+                        <text x="490" y="880" fill="rgba(255,255,255,0.12)" font-family="Orbitron,sans-serif" font-size="7" text-anchor="middle" letter-spacing="2">MACARTHUR CSWY</text>
+                        <text x="420" y="538" fill="rgba(255,255,255,0.06)" font-family="sans-serif" font-size="6" text-anchor="middle" letter-spacing="1">Venetian Cswy</text>
+                        <text x="420" y="48" fill="rgba(255,255,255,0.06)" font-family="sans-serif" font-size="6" text-anchor="middle" letter-spacing="1">79th St Cswy</text>
+
+                        <!-- ROAD LABELS on Miami Beach -->
+                        <text x="655" y="1095" fill="rgba(255,255,255,0.08)" font-family="sans-serif" font-size="6" text-anchor="middle" transform="rotate(-90 655 1070)">Alton Rd</text>
+                        <text x="715" y="1095" fill="rgba(255,255,255,0.1)" font-family="sans-serif" font-size="6" text-anchor="middle" transform="rotate(-90 715 1070)">Collins Ave</text>
+                        <text x="755" y="1095" fill="rgba(255,255,255,0.08)" font-family="sans-serif" font-size="6" text-anchor="middle" transform="rotate(-90 755 1070)">Ocean Dr</text>
+                        <text x="690" y="400" fill="rgba(255,255,255,0.06)" font-family="sans-serif" font-size="5" text-anchor="middle" transform="rotate(-90 690 380)">Indian Creek Dr</text>
+
+                        <!-- CROSS STREET LABELS -->
+                        <text x="800" y="143" fill="rgba(255,255,255,0.07)" font-family="sans-serif" font-size="5" text-anchor="start">W 63rd St</text>
+                        <text x="800" y="93" fill="rgba(255,255,255,0.06)" font-family="sans-serif" font-size="5" text-anchor="start">W 71st St</text>
+                        <text x="800" y="313" fill="rgba(255,255,255,0.06)" font-family="sans-serif" font-size="5" text-anchor="start">W 47th St</text>
+                        <text x="800" y="423" fill="rgba(255,255,255,0.07)" font-family="sans-serif" font-size="5" text-anchor="start">W 41st St</text>
+                        <text x="800" y="683" fill="rgba(255,255,255,0.06)" font-family="sans-serif" font-size="5" text-anchor="start">Lincoln Rd</text>
+                        <text x="800" y="933" fill="rgba(255,255,255,0.06)" font-family="sans-serif" font-size="5" text-anchor="start">5th St</text>
+
+                        <!-- NEIGHBORHOOD LABELS -->
+                        <text x="105" y="340" fill="rgba(0,229,255,0.13)" font-family="Orbitron,sans-serif" font-size="8" text-anchor="middle" letter-spacing="3">DESIGN DISTRICT</text>
+                        <text x="105" y="470" fill="rgba(0,229,255,0.1)" font-family="Orbitron,sans-serif" font-size="7" text-anchor="middle" letter-spacing="2">WYNWOOD</text>
+                        <text x="105" y="750" fill="rgba(0,229,255,0.08)" font-family="Orbitron,sans-serif" font-size="7" text-anchor="middle" letter-spacing="2">DOWNTOWN</text>
+                        <text x="105" y="900" fill="rgba(0,229,255,0.06)" font-family="Orbitron,sans-serif" font-size="6" text-anchor="middle" letter-spacing="2">BRICKELL</text>
+                        <text x="715" y="170" fill="rgba(255,255,255,0.08)" font-family="Orbitron,sans-serif" font-size="7" text-anchor="middle" letter-spacing="2">NORTH BEACH</text>
+                        <text x="715" y="460" fill="rgba(255,255,255,0.07)" font-family="Orbitron,sans-serif" font-size="7" text-anchor="middle" letter-spacing="2">MID-BEACH</text>
+                        <text x="715" y="790" fill="rgba(255,255,255,0.07)" font-family="Orbitron,sans-serif" font-size="7" text-anchor="middle" letter-spacing="2">SOUTH BEACH</text>
+                        <text x="400" y="830" fill="rgba(255,255,255,0.08)" font-family="Orbitron,sans-serif" font-size="6" text-anchor="middle" letter-spacing="1">WATSON ISLAND</text>
+                        <text x="430" y="570" fill="rgba(0,229,255,0.08)" font-family="Playfair Display,serif" font-size="16" font-style="italic" text-anchor="middle" transform="rotate(-8 430 570)">Biscayne Bay</text>
+                        <text x="900" y="600" fill="rgba(0,229,255,0.06)" font-family="Playfair Display,serif" font-size="11" font-style="italic" text-anchor="middle" transform="rotate(90 900 600)">Atlantic Ocean</text>
+
+                        <!-- LANDMARK DOTS (faint) -->
+                        <circle cx="350" cy="900" r="2" fill="rgba(0,229,255,0.1)"/>
+                        <text x="355" y="903" fill="rgba(0,229,255,0.08)" font-family="sans-serif" font-size="5">Port of Miami</text>
+                        <circle cx="160" cy="690" r="2" fill="rgba(0,229,255,0.08)"/>
+                        <text x="165" y="693" fill="rgba(0,229,255,0.06)" font-family="sans-serif" font-size="5">Pérez Art Museum</text>
+
+                        <!-- ══════ THE ROUTE ══════ -->
+                        <!-- Glow layer -->
+                        <path d="
+                            M120 420
+                            L210 420 L635 420
+                            L690 420 L690 310 L690 220 L690 140 L700 80 L710 50
+                            L710 80 L700 140 L690 220 L690 310 L690 420
+                            L715 500 L715 600 L715 680 L730 760 L745 850 L750 930 L745 1000 L730 1060
+                            L700 1000 L680 935
+                            L640 935 Q560 870 440 830
+                            L390 825 L340 830
+                            L280 855 L210 870
+                            L170 800 L140 650 L120 500 L110 380 L110 330
+                        " fill="none" stroke="#ff2d95" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.1"
+                        stroke-dasharray="5000" stroke-dashoffset="5000">
+                            <animate attributeName="stroke-dashoffset" from="5000" to="0" dur="5s" begin="0.5s" fill="freeze"/>
+                        </path>
+                        <!-- Main route line -->
+                        <path d="
+                            M120 420
+                            L210 420 L635 420
+                            L690 420 L690 310 L690 220 L690 140 L700 80 L710 50
+                            L710 80 L700 140 L690 220 L690 310 L690 420
+                            L715 500 L715 600 L715 680 L730 760 L745 850 L750 930 L745 1000 L730 1060
+                            L700 1000 L680 935
+                            L640 935 Q560 870 440 830
+                            L390 825 L340 830
+                            L280 855 L210 870
+                            L170 800 L140 650 L120 500 L110 380 L110 330
+                        " fill="none" stroke="#ff2d95" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"
+                        stroke-dasharray="5000" stroke-dashoffset="5000">
+                            <animate attributeName="stroke-dashoffset" from="5000" to="0" dur="5s" begin="0.5s" fill="freeze"/>
+                        </path>
+
+                        <!-- ══════ STOP MARKERS ══════ -->
+                        <!-- Stop 1: The Moore — START (Design District) -->
+                        <a href="#stop-1" class="map-stop-link"><g opacity="0" style="cursor:pointer"><animate attributeName="opacity" to="1" dur="0.4s" begin="1s" fill="freeze"/>
+                            <rect x="10" y="296" width="100" height="30" rx="3" fill="rgba(10,4,8,0.85)" stroke="rgba(255,45,149,0.2)" stroke-width="0.5"/>
+                            <text x="60" y="308" fill="#ff2d95" font-family="Orbitron,sans-serif" font-size="7" font-weight="700" text-anchor="middle" filter="url(#glow)">THE MOORE</text>
+                            <text x="60" y="320" fill="rgba(255,255,255,0.4)" font-family="sans-serif" font-size="5.5" text-anchor="middle">Rally HQ &bull; START</text>
+                            <circle cx="110" cy="330" r="20" fill="#0a1425" stroke="#ff2d95" stroke-width="3" filter="url(#glow)"/>
+                            <text x="110" y="336" fill="#fff" font-family="Orbitron,sans-serif" font-size="12" font-weight="800" text-anchor="middle">1</text>
+                        </g></a>
+
+                        <!-- Stop 2: Bridge Crossing -->
+                        <a href="#stop-2" class="map-stop-link"><g opacity="0" style="cursor:pointer"><animate attributeName="opacity" to="1" dur="0.4s" begin="1.5s" fill="freeze"/>
+                            <rect x="440" y="406" width="110" height="30" rx="3" fill="rgba(10,4,8,0.85)" stroke="rgba(255,107,53,0.2)" stroke-width="0.5"/>
+                            <text x="495" y="418" fill="#ff6b35" font-family="Orbitron,sans-serif" font-size="6.5" font-weight="700" text-anchor="middle" filter="url(#glow)">BRIDGE</text>
+                            <text x="495" y="430" fill="rgba(255,255,255,0.35)" font-family="sans-serif" font-size="5" text-anchor="middle">Drone Zone</text>
+                            <circle cx="420" cy="420" r="20" fill="#0a1425" stroke="#ff6b35" stroke-width="3" filter="url(#glow)"/>
+                            <text x="420" y="426" fill="#fff" font-family="Orbitron,sans-serif" font-size="12" font-weight="800" text-anchor="middle">2</text>
+                        </g></a>
+
+                        <!-- Stop 3: Will's Mansion -->
+                        <a href="#stop-3" class="map-stop-link"><g opacity="0" style="cursor:pointer"><animate attributeName="opacity" to="1" dur="0.4s" begin="2s" fill="freeze"/>
+                            <rect x="735" y="66" width="115" height="30" rx="3" fill="rgba(10,4,8,0.85)" stroke="rgba(0,229,255,0.2)" stroke-width="0.5"/>
+                            <text x="792" y="78" fill="#00e5ff" font-family="Orbitron,sans-serif" font-size="6.5" font-weight="700" text-anchor="middle" filter="url(#glow)">MANSION</text>
+                            <text x="792" y="90" fill="rgba(255,255,255,0.35)" font-family="sans-serif" font-size="5" text-anchor="middle">2021 W 63rd St</text>
+                            <circle cx="700" cy="80" r="20" fill="#0a1425" stroke="#00e5ff" stroke-width="3" filter="url(#glow)"/>
+                            <text x="700" y="86" fill="#fff" font-family="Orbitron,sans-serif" font-size="12" font-weight="800" text-anchor="middle">3</text>
+                        </g></a>
+
+                        <!-- Route line: Stop 3 (Mansion) to Stop 4 (Yacht) — yacht cruise path -->
+                        <path d="M690 90 Q600 100 520 120 Q470 130 445 140" stroke="#ff2d95" stroke-width="2.5" fill="none" stroke-dasharray="8,5" opacity="0.7" filter="url(#glow)">
+                            <animate attributeName="opacity" from="0" to="0.7" dur="0.4s" begin="2.1s" fill="freeze"/>
+                        </path>
+
+                        <!-- Stop 4: Pardo Yacht (in the bay) -->
+                        <a href="#stop-4" class="map-stop-link"><g opacity="0" style="cursor:pointer"><animate attributeName="opacity" to="1" dur="0.4s" begin="2.3s" fill="freeze"/>
+                            <rect x="460" y="126" width="115" height="30" rx="3" fill="rgba(10,4,8,0.85)" stroke="rgba(0,229,255,0.2)" stroke-width="0.5"/>
+                            <text x="517" y="138" fill="#00e5ff" font-family="Orbitron,sans-serif" font-size="6.5" font-weight="700" text-anchor="middle" filter="url(#glow)">YACHT</text>
+                            <text x="517" y="150" fill="rgba(255,255,255,0.35)" font-family="sans-serif" font-size="5" text-anchor="middle">Pardo &bull; Biscayne Bay</text>
+                            <circle cx="440" cy="140" r="20" fill="#0a1425" stroke="#00e5ff" stroke-width="3" filter="url(#glow)"/>
+                            <text x="440" y="146" fill="#fff" font-family="Orbitron,sans-serif" font-size="12" font-weight="800" text-anchor="middle">4</text>
+                        </g></a>
+
+                        <!-- Stop 5: 79th St Open Road -->
+                        <a href="#stop-5" class="map-stop-link"><g opacity="0" style="cursor:pointer"><animate attributeName="opacity" to="1" dur="0.4s" begin="2.6s" fill="freeze"/>
+                            <rect x="580" y="36" width="110" height="30" rx="3" fill="rgba(10,4,8,0.85)" stroke="rgba(255,107,53,0.2)" stroke-width="0.5"/>
+                            <text x="635" y="48" fill="#ff6b35" font-family="Orbitron,sans-serif" font-size="6.5" font-weight="700" text-anchor="middle" filter="url(#glow)">79TH ST</text>
+                            <text x="635" y="60" fill="rgba(255,255,255,0.35)" font-family="sans-serif" font-size="5" text-anchor="middle">Speed Runs</text>
+                            <circle cx="710" cy="50" r="20" fill="#0a1425" stroke="#ff6b35" stroke-width="3" filter="url(#glow)"/>
+                            <text x="710" y="56" fill="#fff" font-family="Orbitron,sans-serif" font-size="12" font-weight="800" text-anchor="middle">5</text>
+                        </g></a>
+
+                        <!-- Stop 6: Ocean Drive -->
+                        <a href="#stop-6" class="map-stop-link"><g opacity="0" style="cursor:pointer"><animate attributeName="opacity" to="1" dur="0.4s" begin="3.2s" fill="freeze"/>
+                            <rect x="755" y="666" width="110" height="30" rx="3" fill="rgba(10,4,8,0.85)" stroke="rgba(255,45,149,0.2)" stroke-width="0.5"/>
+                            <text x="810" y="678" fill="#ff2d95" font-family="Orbitron,sans-serif" font-size="6.5" font-weight="700" text-anchor="middle" filter="url(#glow)">OCEAN DRIVE</text>
+                            <text x="810" y="690" fill="rgba(255,255,255,0.35)" font-family="sans-serif" font-size="5" text-anchor="middle">Art Deco &bull; Iconic</text>
+                            <circle cx="715" cy="680" r="20" fill="#0a1425" stroke="#ff2d95" stroke-width="3" filter="url(#glow)"/>
+                            <text x="715" y="686" fill="#fff" font-family="Orbitron,sans-serif" font-size="12" font-weight="800" text-anchor="middle">6</text>
+                        </g></a>
+
+                        <!-- Stop 7: South Pointe -->
+                        <a href="#stop-7" class="map-stop-link"><g opacity="0" style="cursor:pointer"><animate attributeName="opacity" to="1" dur="0.4s" begin="3.8s" fill="freeze"/>
+                            <rect x="755" y="1046" width="115" height="30" rx="3" fill="rgba(10,4,8,0.85)" stroke="rgba(0,229,255,0.2)" stroke-width="0.5"/>
+                            <text x="812" y="1058" fill="#00e5ff" font-family="Orbitron,sans-serif" font-size="6.5" font-weight="700" text-anchor="middle" filter="url(#glow)">SOUTH POINTE</text>
+                            <text x="812" y="1070" fill="rgba(255,255,255,0.35)" font-family="sans-serif" font-size="5" text-anchor="middle">Golden Hour &bull; Scenic</text>
+                            <circle cx="730" cy="1060" r="20" fill="#0a1425" stroke="#00e5ff" stroke-width="3" filter="url(#glow)"/>
+                            <text x="730" y="1066" fill="#fff" font-family="Orbitron,sans-serif" font-size="12" font-weight="800" text-anchor="middle">7</text>
+                        </g></a>
+
+                        <!-- Stop 8: MacArthur Causeway -->
+                        <a href="#stop-8" class="map-stop-link"><g opacity="0" style="cursor:pointer"><animate attributeName="opacity" to="1" dur="0.4s" begin="4.2s" fill="freeze"/>
+                            <rect x="560" y="846" width="115" height="30" rx="3" fill="rgba(10,4,8,0.85)" stroke="rgba(255,107,53,0.2)" stroke-width="0.5"/>
+                            <text x="617" y="858" fill="#ff6b35" font-family="Orbitron,sans-serif" font-size="6.5" font-weight="700" text-anchor="middle" filter="url(#glow)">MACARTHUR</text>
+                            <text x="617" y="870" fill="rgba(255,255,255,0.35)" font-family="sans-serif" font-size="5" text-anchor="middle">Causeway &bull; Speed</text>
+                            <circle cx="540" cy="860" r="20" fill="#0a1425" stroke="#ff6b35" stroke-width="3" filter="url(#glow)"/>
+                            <text x="540" y="866" fill="#fff" font-family="Orbitron,sans-serif" font-size="12" font-weight="800" text-anchor="middle">8</text>
+                        </g></a>
+
+                        <!-- Stop 9: Reserve Padel -->
+                        <a href="#stop-9" class="map-stop-link"><g opacity="0" style="cursor:pointer"><animate attributeName="opacity" to="1" dur="0.4s" begin="4.5s" fill="freeze"/>
+                            <rect x="310" y="790" width="110" height="26" rx="3" fill="rgba(10,4,8,0.85)" stroke="rgba(0,229,255,0.2)" stroke-width="0.5"/>
+                            <text x="365" y="801" fill="#00e5ff" font-family="Orbitron,sans-serif" font-size="6" font-weight="700" text-anchor="middle" filter="url(#glow)">PADEL</text>
+                            <text x="365" y="812" fill="rgba(255,255,255,0.35)" font-family="sans-serif" font-size="5" text-anchor="middle">Reserve &bull; Watson Is.</text>
+                            <circle cx="400" cy="820" r="20" fill="#0a1425" stroke="#00e5ff" stroke-width="3" filter="url(#glow)"/>
+                            <text x="400" y="826" fill="#fff" font-family="Orbitron,sans-serif" font-size="12" font-weight="800" text-anchor="middle">9</text>
+                        </g></a>
+
+                        <!-- Stop 10: Seaplane -->
+                        <a href="#stop-10" class="map-stop-link"><g opacity="0" style="cursor:pointer"><animate attributeName="opacity" to="1" dur="0.4s" begin="4.7s" fill="freeze"/>
+                            <rect x="270" y="845" width="100" height="26" rx="3" fill="rgba(10,4,8,0.85)" stroke="rgba(167,139,250,0.2)" stroke-width="0.5"/>
+                            <text x="320" y="856" fill="#a78bfa" font-family="Orbitron,sans-serif" font-size="6" font-weight="700" text-anchor="middle">SEAPLANE</text>
+                            <text x="320" y="867" fill="rgba(255,255,255,0.3)" font-family="sans-serif" font-size="5" text-anchor="middle">Off to the Races</text>
+                            <circle cx="370" cy="840" r="18" fill="#0a1425" stroke="#a78bfa" stroke-width="3" filter="url(#glow)"/>
+                            <text x="370" y="846" fill="#fff" font-family="Orbitron,sans-serif" font-size="10" font-weight="700" text-anchor="middle">10</text>
+                        </g></a>
+
+                        <!-- Stop 11: Curated — FINISH (midpoint between Moore & Seaplane) -->
+                        <a href="#stop-11" class="map-stop-link"><g opacity="0" style="cursor:pointer"><animate attributeName="opacity" to="1" dur="0.4s" begin="5s" fill="freeze"/>
+                            <rect x="140" y="597" width="105" height="30" rx="3" fill="rgba(10,4,8,0.85)" stroke="rgba(255,215,0,0.2)" stroke-width="0.5"/>
+                            <text x="192" y="609" fill="#ffd700" font-family="Orbitron,sans-serif" font-size="7" font-weight="700" text-anchor="middle" filter="url(#glow)">CURATED</text>
+                            <text x="192" y="621" fill="rgba(255,255,255,0.4)" font-family="sans-serif" font-size="5.5" text-anchor="middle">Grand Finale &bull; FINISH</text>
+                            <circle cx="240" cy="585" r="20" fill="#0a1425" stroke="#ffd700" stroke-width="3" filter="url(#glow)"/>
+                            <text x="240" y="591" fill="#fff" font-family="Orbitron,sans-serif" font-size="11" font-weight="800" text-anchor="middle">11</text>
+                        </g></a>
+
+                        <!-- STOP ICONS — positioned next to each stop's text label -->
+                        <!-- Stop 1: The Moore — hotel (right of label) -->
+                        <text x="115" y="290" font-size="36" opacity="0"><animate attributeName="opacity" to="0.85" dur="0.3s" begin="1.1s" fill="freeze"/>&#127976;</text>
+                        <!-- Stop 2: Bridge — bridge (right of text) -->
+                        <text x="450" y="405" font-size="36" opacity="0"><animate attributeName="opacity" to="0.85" dur="0.3s" begin="1.6s" fill="freeze"/>&#127753;</text>
+                        <!-- Stop 3: Mansion — house (right of label) -->
+                        <text x="855" y="88" font-size="36" opacity="0"><animate attributeName="opacity" to="0.85" dur="0.3s" begin="2.1s" fill="freeze"/>&#127968;</text>
+                        <!-- Stop 4: Yacht — sailboat (right of text) -->
+                        <text x="475" y="135" font-size="36" opacity="0"><animate attributeName="opacity" to="0.85" dur="0.3s" begin="2.4s" fill="freeze"/>&#9973;</text>
+                        <!-- Stop 5: 79th St — racing car (left of text) -->
+                        <text x="625" y="55" font-size="36" opacity="0"><animate attributeName="opacity" to="0.85" dur="0.3s" begin="2.7s" fill="freeze"/>&#127950;</text>
+                        <!-- Stop 6: Ocean Drive — palm tree (right of label) -->
+                        <text x="870" y="688" font-size="36" opacity="0"><animate attributeName="opacity" to="0.85" dur="0.3s" begin="3.3s" fill="freeze"/>&#127796;</text>
+                        <!-- Stop 7: South Pointe — sunset (right of label) -->
+                        <text x="875" y="1068" font-size="36" opacity="0"><animate attributeName="opacity" to="0.85" dur="0.3s" begin="3.9s" fill="freeze"/>&#127749;</text>
+                        <!-- Stop 8: MacArthur — highway (right of text) -->
+                        <text x="580" y="855" font-size="36" opacity="0"><animate attributeName="opacity" to="0.85" dur="0.3s" begin="4.3s" fill="freeze"/>&#128739;&#65039;</text>
+                        <!-- Stop 9: Padel — racquet (right of text) -->
+                        <text x="430" y="815" font-size="36" opacity="0"><animate attributeName="opacity" to="0.85" dur="0.3s" begin="4.6s" fill="freeze"/>&#127955;</text>
+                        <!-- Stop 10: Seaplane — airplane (left of label) -->
+                        <text x="255" y="862" font-size="36" opacity="0"><animate attributeName="opacity" to="0.85" dur="0.3s" begin="4.8s" fill="freeze"/>&#9992;&#65039;</text>
+                        <!-- Stop 11: Curated — champagne (right of label) -->
+                        <text x="250" y="615" font-size="36" opacity="0"><animate attributeName="opacity" to="0.85" dur="0.3s" begin="5.1s" fill="freeze"/>&#129346;</text>
+
+                        <!-- DIRECTION ARROWS along route -->
+                        <g fill="#ff2d95" opacity="0"><animate attributeName="opacity" to="0.5" dur="0.3s" begin="5.5s" fill="freeze"/>
+                            <polygon points="300,415 310,420 300,425" transform="rotate(0 305 420)"/>
+                            <polygon points="690,280 695,270 700,280"/>
+                            <polygon points="710,550 715,540 720,550"/>
+                            <polygon points="738,810 743,800 748,810"/>
+                            <polygon points="710,1020 720,1030 700,1030"/>
+                            <polygon points="470,835 460,830 470,825"/>
+                            <polygon points="250,862 240,857 250,852"/>
+                            <polygon points="115,450 110,440 120,440"/>
+                        </g>
+
+                        <!-- DISTANCE BADGE -->
+                        <g opacity="0"><animate attributeName="opacity" to="1" dur="0.5s" begin="5.5s" fill="freeze"/>
+                            <rect x="350" y="1200" width="300" height="60" rx="4" fill="rgba(10,4,8,0.9)" stroke="rgba(255,45,149,0.15)" stroke-width="1"/>
+                            <text x="500" y="1225" fill="#ff2d95" font-family="Orbitron,sans-serif" font-size="14" font-weight="900" text-anchor="middle" filter="url(#glow)">19.3 MILES &bull; 11 STOPS</text>
+                            <text x="500" y="1245" fill="rgba(255,255,255,0.35)" font-family="Orbitron,sans-serif" font-size="8" text-anchor="middle" letter-spacing="3">1 HR 5 MIN DRIVE TIME</text>
+                        </g>
+
+                        <!-- COMPASS -->
+                        <g opacity="0.2" transform="translate(50,1200)">
+                            <circle cx="0" cy="0" r="18" fill="none" stroke="rgba(0,229,255,0.3)" stroke-width="0.5"/>
+                            <line x1="0" y1="-15" x2="0" y2="-8" stroke="#00e5ff" stroke-width="1.5"/>
+                            <line x1="0" y1="8" x2="0" y2="15" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+                            <line x1="-8" y1="0" x2="8" y2="0" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+                            <text x="0" y="-20" fill="#00e5ff" font-family="Orbitron,sans-serif" font-size="6" text-anchor="middle" font-weight="700">N</text>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <div class="route-map-caption reveal">
+                <span>The Moore &bull; E+C Home &bull; South Beach &bull; Watson Island &bull; Design District</span>
+            </div>
+            <div class="route-stats reveal">
+                <div class="route-stat">
+                    <div class="route-stat-value">19.3 mi</div>
+                    <div class="route-stat-label">Total Distance</div>
+                </div>
+                <div class="route-stat">
+                    <div class="route-stat-value">~1:05</div>
+                    <div class="route-stat-label">Drive Time</div>
+                </div>
+                <div class="route-stat">
+                    <div class="route-stat-value">Full Day</div>
+                    <div class="route-stat-label">With All Stops</div>
+                </div>
+                <div class="route-stat">
+                    <div class="route-stat-value">11</div>
+                    <div class="route-stat-label">Stops</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="neon-divider"></div>
+
+    <!-- CINEMATIC QUOTE 2 -->
+    <div class="quote-break reveal">
+        <blockquote>
+            "Tuxedos at dawn. V8s on the causeway. A seaplane at sunset. Everything in between is the highlight reel."
+            <span class="quote-accent">— The Rally Playbook</span>
+        </blockquote>
+    </div>
+
+    <!-- ITINERARY: STOP BY STOP -->
+    <section class="itinerary section-pad" id="stops">
+        <div class="container">
+            <div class="itinerary-header reveal">
+                <p class="section-eyebrow flicker">Stop by Stop</p>
+                <h2 class="section-title">The Full Itinerary</h2>
+                <p class="section-sub" style="margin:0 auto;">
+                    Eleven stops. Every one matters. Know where you're going,
+                    what's happening, and what shots we're getting.
+                </p>
+            </div>
+        </div>
+
+        <!-- STOP 1: The Moore -->
+        <div class="stop-card reveal" id="stop-1">
+            <div class="stop-card-content">
+                <div class="stop-card-number">Stop 01</div>
+                <span class="stop-card-tag tag-photo">Photoshoot</span>
+                <h3 class="stop-card-title">The Moore</h3>
+                <p class="stop-card-location">Rally HQ &mdash; Starting Point</p>
+                <p class="stop-card-desc">
+                    Seven identical red Ferraris lined up outside. You step out in sleek black tuxedos
+                    for the coordinated opening photoshoot. Adjusting cufflinks. Opening doors in unison.
+                    Engine revs echoing off the building. The energy starts here. The convoy is born.
+                </p>
+                <div class="stop-card-shots">
+                    <span class="shot-tag">Group Formation</span>
+                    <span class="shot-tag">Detail Shots</span>
+                    <span class="shot-tag">Engine Start</span>
+                    <span class="shot-tag">Drone Overhead</span>
+                </div>
+            </div>
+            <div class="stop-card-visual">
+                <img src="images/the-moore.jpg" alt="The Moore — Rally Starting Point" style="object-position: center 70%;">
+            </div>
+        </div>
+
+        <!-- STOP 2: Bridge -->
+        <div class="stop-card reveal" id="stop-2">
+            <div class="stop-card-content">
+                <div class="stop-card-number">Stop 02</div>
+                <span class="stop-card-tag tag-drive">Drive</span>
+                <h3 class="stop-card-title">Scenic Bridge Crossing</h3>
+                <p class="stop-card-location">Julia Tuttle / 195 &mdash; Drone Zone</p>
+                <p class="stop-card-desc">
+                    Roll out as a convoy. Drone footage and a follow car capture seven red Ferraris
+                    in formation crossing the bridge. The Miami skyline behind you, Biscayne Bay below,
+                    open road ahead. This is the first moment the world sees the convoy.
+                </p>
+                <div class="stop-card-shots">
+                    <span class="shot-tag">Drone Aerial</span>
+                    <span class="shot-tag">Follow Car</span>
+                    <span class="shot-tag">Formation</span>
+                </div>
+            </div>
+            <div class="stop-card-visual">
+                <img src="images/macarthur-causeway.jpg" alt="Miami skyline across Biscayne Bay">
+            </div>
+        </div>
+
+        <!-- STOP 3: Mansion -->
+        <div class="stop-card reveal" id="stop-3">
+            <div class="stop-card-content">
+                <div class="stop-card-number">Stop 03</div>
+                <span class="stop-card-tag tag-lifestyle">Lifestyle</span>
+                <h3 class="stop-card-title">Will's Mansion</h3>
+                <p class="stop-card-location">Waterfront Estate &mdash; Private Property</p>
+                <p class="stop-card-desc">
+                    Shift the vibe. Elegant poolside photos — lounging, casual shots, the kind of
+                    effortless cool that only comes from a waterfront mansion. Palm trees, green water,
+                    perfect light. Total privacy. This is the intermission before the yacht.
+                </p>
+                <div class="stop-card-shots">
+                    <span class="shot-tag">Poolside</span>
+                    <span class="shot-tag">Casual Portraits</span>
+                    <span class="shot-tag">Estate Grounds</span>
+                </div>
+            </div>
+            <div class="stop-card-visual">
+                <img src="images/IMG_7459.jpg" alt="Will's Mansion">
+            </div>
+        </div>
+
+        <!-- STOP 4: Yacht -->
+        <div class="stop-card reveal" id="stop-4">
+            <div class="stop-card-content">
+                <div class="stop-card-number">Stop 04</div>
+                <span class="stop-card-tag tag-lifestyle">Lifestyle</span>
+                <h3 class="stop-card-title">The Pardo Yacht</h3>
+                <p class="stop-card-location">Marina &mdash; Biscayne Bay</p>
+                <p class="stop-card-desc">
+                    Class meets relaxation. Board the Pardo for on-deck shots — at the helm,
+                    refreshments in hand, the Miami skyline and open water stretching behind you.
+                    This is the intermission that feels like a scene from a film.
+                </p>
+                <div class="stop-card-shots">
+                    <span class="shot-tag">On Deck</span>
+                    <span class="shot-tag">At the Helm</span>
+                    <span class="shot-tag">Bay Backdrop</span>
+                    <span class="shot-tag">Refreshments</span>
+                </div>
+            </div>
+            <div class="stop-card-visual">
+                <img src="images/IMG_0749.jpg" alt="Pardo Yacht — Aerial Drone Shot">
+            </div>
+        </div>
+
+
+        <!-- STOP 5: 79th St -->
+        <div class="stop-card reveal" id="stop-5">
+            <div class="stop-card-content">
+                <div class="stop-card-number">Stop 05</div>
+                <span class="stop-card-tag tag-drive">Speed</span>
+                <h3 class="stop-card-title">79th Street Open Road</h3>
+                <p class="stop-card-location">79th Street Corridor &mdash; North Miami</p>
+                <p class="stop-card-desc">
+                    Shift gears — literally. Wide open roads, long straight stretches. This is the
+                    adrenaline moment. Controlled but thrilling. Rolling shots of seven Ferraris at speed,
+                    the raw sound of V8s unleashed, action footage that makes the highlight reel.
+                </p>
+                <div class="stop-card-shots">
+                    <span class="shot-tag">Rolling Shots</span>
+                    <span class="shot-tag">Speed Runs</span>
+                    <span class="shot-tag">Sound Capture</span>
+                </div>
+            </div>
+            <div class="stop-card-visual">
+                <img src="images/miami-causeway.jpg" alt="Miami road at night — neon glow">
+            </div>
+        </div>
+
+        <!-- STOP 6: Ocean Drive -->
+        <div class="stop-card reveal" id="stop-6">
+            <div class="stop-card-content">
+                <div class="stop-card-number">Stop 06</div>
+                <span class="stop-card-tag tag-photo">Iconic</span>
+                <h3 class="stop-card-title">Ocean Drive</h3>
+                <p class="stop-card-location">Collins Ave &amp; Ocean Drive &mdash; South Beach</p>
+                <p class="stop-card-desc">
+                    Slow cruise past the Art Deco hotels. This is style over speed — the classic Miami
+                    feel. Stop for iconic photos with the legendary pastel facades behind you. Palm trees
+                    overhead, neon starting to glow. Timeless. Elegant. Unmistakably Miami.
+                </p>
+                <div class="stop-card-shots">
+                    <span class="shot-tag">Art Deco Backdrop</span>
+                    <span class="shot-tag">Street Level</span>
+                    <span class="shot-tag">Neon Glow</span>
+                </div>
+            </div>
+            <div class="stop-card-visual">
+                <img src="images/ocean-drive-night.jpg" alt="Ocean Drive at dusk — Art Deco neon">
+            </div>
+        </div>
+
+        <!-- Ocean Drive full-bleed break -->
+        <div class="full-bleed reveal" style="height:45vh; min-height:300px;">
+            <img src="images/ocean-drive-day.jpg" alt="Art Deco hotels on Ocean Drive" loading="lazy" style="object-position: center 75%;">
+            <div class="overlay-text">
+                <h2>This Is the Shot</h2>
+                <p>Seven red Ferraris lined up in front of pastel Art Deco. Palm trees. Blue sky. The photograph that defines the day.</p>
+            </div>
+        </div>
+
+        <!-- STOP 7: South Pointe -->
+        <div class="stop-card reveal" id="stop-7">
+            <div class="stop-card-content">
+                <div class="stop-card-number">Stop 07</div>
+                <span class="stop-card-tag tag-photo">Scenic</span>
+                <h3 class="stop-card-title">South Pointe</h3>
+                <p class="stop-card-location">Southern Tip &mdash; Miami Beach</p>
+                <p class="stop-card-desc">
+                    The southernmost point of Miami Beach. A scenic pause — ocean on both sides,
+                    cruise ships gliding past, the golden-hour light painting everything warm.
+                    This is where you catch your breath before the final act. Golden hour and the open Atlantic.
+                </p>
+                <div class="stop-card-shots">
+                    <span class="shot-tag">Coastal Panorama</span>
+                    <span class="shot-tag">Golden Hour</span>
+                    <span class="shot-tag">Group Portrait</span>
+                </div>
+            </div>
+            <div class="stop-card-visual">
+                <img src="images/south-pointe-park.jpg" alt="South Pointe Park at golden hour">
+            </div>
+        </div>
+
+        <!-- STOP 8: Bridges -->
+        <div class="stop-card reveal" id="stop-8">
+            <div class="stop-card-content">
+                <div class="stop-card-number">Stop 08</div>
+                <span class="stop-card-tag tag-drive">Performance</span>
+                <h3 class="stop-card-title">MacArthur Causeway</h3>
+                <p class="stop-card-location">I-395 &mdash; Bay Crossing</p>
+                <p class="stop-card-desc">
+                    Loop onto the causeway. Performance shots crossing the bay with the downtown
+                    skyline rising behind you. Rolling convoy formation, engines echoing, the bridge
+                    lights starting to glow. Feel the power on the way to Watson Island.
+                </p>
+                <div class="stop-card-shots">
+                    <span class="shot-tag">Bridge Formation</span>
+                    <span class="shot-tag">Speed Blur</span>
+                    <span class="shot-tag">Skyline Backdrop</span>
+                </div>
+            </div>
+            <div class="stop-card-visual">
+                <img src="images/miami-road.jpg" alt="Aerial view of downtown Miami and Biscayne Bay" style="object-position: center 75%;">
+            </div>
+        </div>
+
+        <!-- STOP 9: Reserve Padel -->
+        <div class="stop-card reveal" id="stop-9">
+            <div class="stop-card-content">
+                <div class="stop-card-number">Stop 09</div>
+                <span class="stop-card-tag tag-lifestyle">Action</span>
+                <h3 class="stop-card-title">Reserve Padel</h3>
+                <p class="stop-card-location">Watson Island &mdash; Seaplane Base Complex</p>
+                <p class="stop-card-desc">
+                    Padel in tuxedos. Six glass-enclosed courts with panoramic Biscayne Bay views,
+                    seaplanes taking off overhead, downtown Miami as your backdrop. Action shots of the
+                    crew playing the fastest-growing sport on earth — in black tie. Then hit the sunset
+                    deck bar before the next move.
+                </p>
+                <div class="stop-card-shots">
+                    <span class="shot-tag">Court Action</span>
+                    <span class="shot-tag">Tuxedo Padel</span>
+                    <span class="shot-tag">Sunset Deck</span>
+                    <span class="shot-tag">Bay Views</span>
+                </div>
+            </div>
+            <div class="stop-card-visual">
+                <img src="images/reserve-padel-new.jpg" alt="Reserve Padel — Watson Island" style="object-position: center 55%;">
+            </div>
+        </div>
+
+        <!-- STOP 10: Seaplane -->
+        <div class="stop-card reveal" id="stop-10">
+            <div class="stop-card-content">
+                <div class="stop-card-number">Stop 10</div>
+                <span class="stop-card-tag tag-aerial">Aerial</span>
+                <h3 class="stop-card-title">Seaplane Base</h3>
+                <p class="stop-card-location">Watson Island &mdash; Same Complex</p>
+                <p class="stop-card-desc">
+                    The namesake moment. Steps from the padel courts. Park the Ferraris in formation
+                    with seaplanes behind — cars, planes, tuxedos. Then take flight over the entire
+                    route you just conquered. See the day's journey from the sky. This is where
+                    <em>Off to the Races</em> earns its name.
+                </p>
+                <div class="stop-card-shots">
+                    <span class="shot-tag">Car-Plane Formation</span>
+                    <span class="shot-tag">Seaplane Flight</span>
+                    <span class="shot-tag">Aerial Route Retrace</span>
+                </div>
+            </div>
+            <div class="stop-card-visual">
+                <img src="images/seaplane-base.jpg" alt="Miami Seaplane at Watson Island" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+        </div>
+
+        <!-- STOP 11: Curated -->
+        <div class="stop-card reveal" id="stop-11">
+            <div class="stop-card-content">
+                <div class="stop-card-number">Stop 11</div>
+                <span class="stop-card-tag tag-finale">Grand Finale</span>
+                <h3 class="stop-card-title">Curated</h3>
+                <p class="stop-card-location">Supercar Showroom &mdash; Design District</p>
+                <p class="stop-card-desc">
+                    Land. Rejoin the Ferraris. The final stop. A luxury photo session surrounded by some
+                    of the rarest machines on earth. Your red Ferraris parked among legends. The exclamation
+                    point on a day that went off to the races — and never looked back.
+                </p>
+                <div class="stop-card-shots">
+                    <span class="shot-tag">Showroom Portraits</span>
+                    <span class="shot-tag">Supercar Gallery</span>
+                    <span class="shot-tag">Final Frame</span>
+                </div>
+            </div>
+            <div class="stop-card-visual">
+                <img src="images/curated-new.jpg" alt="Curated Supercar Showroom">
+            </div>
+        </div>
+    </section>
+
+    <!-- FULL BLEED: Curated -->
+    <div class="full-bleed">
+        <img src="images/IMG_0642-2.jpg" alt="Curated showroom" loading="lazy">
+        <div class="overlay-text">
+            <p class="section-eyebrow" style="color:var(--neon-cyan); text-shadow:0 0 20px var(--neon-cyan-glow);">The Final Frame</p>
+            <h2>Where Legends Park</h2>
+            <p>Curated. The rarest machines on earth. Your Ferraris among them. The perfect ending.</p>
+        </div>
+    </div>
+
+    <!-- PHOTO STRIP 2 -->
+    <div class="photo-strip reverse">
+        <div class="photo-strip-track">
+            <div class="photo-strip-item"><img src="images/IMG_0752.png" alt="Pardo yacht from behind" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/IMG_0639-2.jpg" alt="Curated showroom" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/IMG_0638-2.jpg" alt="Ferrari showroom" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/IMG_0640-2.jpg" alt="Supercar collection" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/reserve-padel-new.jpg" alt="Reserve Padel court" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/IMG_7459.jpg" alt="Yacht mansion" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/ocean-drive-day.jpg" alt="Ocean Drive" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/IMG_0410.jpg" alt="Ferrari detail" loading="lazy"></div>
+            <!-- WHY: Duplicate set for seamless infinite loop -->
+            <div class="photo-strip-item"><img src="images/IMG_0752.png" alt="Pardo yacht from behind" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/IMG_0639-2.jpg" alt="Curated showroom" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/IMG_0638-2.jpg" alt="Ferrari showroom" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/IMG_0640-2.jpg" alt="Supercar collection" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/reserve-padel-new.jpg" alt="Reserve Padel court" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/IMG_7459.jpg" alt="Yacht mansion" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/ocean-drive-day.jpg" alt="Ocean Drive" loading="lazy"></div>
+            <div class="photo-strip-item"><img src="images/IMG_0410.jpg" alt="Ferrari detail" loading="lazy"></div>
+        </div>
+    </div>
+
+    <div class="neon-divider"></div>
+
+    <!-- DRESS CODE -->
+    <section class="dresscode section-pad">
+        <div class="container">
+            <div class="reveal" style="text-align:center;">
+                <p class="section-eyebrow">The Look</p>
+                <h2 class="section-title">Black Tie. Red Ferrari.</h2>
+                <p class="section-sub" style="margin:0 auto;">
+                    The contrast is the aesthetic. Sleek black against Ferrari red.
+                    Every detail matters. Dress sharp — the cameras are rolling all day.
+                </p>
+            </div>
+            <div class="dresscode-grid reveal">
+                <div class="dresscode-item">
+                    <div class="dresscode-icon">&#128084;</div>
+                    <div class="dresscode-label">Black Tuxedo</div>
+                    <div class="dresscode-detail">Slim-fit, peak lapel</div>
+                </div>
+                <div class="dresscode-item">
+                    <div class="dresscode-icon">&#128374;</div>
+                    <div class="dresscode-label">Dress Shoes</div>
+                    <div class="dresscode-detail">Patent or polished leather</div>
+                </div>
+                <div class="dresscode-item">
+                    <div class="dresscode-icon">&#9201;</div>
+                    <div class="dresscode-label">Timepiece</div>
+                    <div class="dresscode-detail">Your finest watch</div>
+                </div>
+                <div class="dresscode-item">
+                    <div class="dresscode-icon">&#128526;</div>
+                    <div class="dresscode-label">Your Favorite Shades</div>
+                    <div class="dresscode-detail">Bring your go-to pair</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="neon-divider"></div>
+
+    <!-- LOGISTICS -->
+    <section class="logistics section-pad" id="logistics">
+        <div class="container">
+            <div class="reveal" style="text-align:center;">
+                <p class="section-eyebrow flicker">Mission Brief</p>
+                <h2 class="section-title">Know Before You Go</h2>
+                <p class="section-sub" style="margin:0 auto;">
+                    This is a full-day production. Read this section carefully.
+                    Show up prepared. Show up on time. Show up sharp.
+                </p>
+            </div>
+            <div class="logistics-grid reveal">
+                <div class="logistics-card">
+                    <span class="card-icon">&#9200;</span>
+                    <h3>Schedule &amp; Timing</h3>
+                    <ul>
+                        <li><strong>Arrival:</strong> Be at The Moore by the designated call time — sharp</li>
+                        <li><strong>Duration:</strong> Full day experience — plan for 8-10 hours</li>
+                        <li><strong>Meals:</strong> Refreshments and food provided at key stops</li>
+                        <li><strong>Wrap:</strong> Final photos at Curated in the evening</li>
+                        <li><strong>Flexibility:</strong> Times between stops may shift — stay with the group</li>
+                    </ul>
+                </div>
+                <div class="logistics-card">
+                    <span class="card-icon">&#127909;</span>
+                    <h3>Production Crew</h3>
+                    <ul>
+                        <li><strong>Photographer:</strong> Professional photographer at every stop</li>
+                        <li><strong>Drone:</strong> Drone operator for aerial convoy and formation shots</li>
+                        <li><strong>Follow car:</strong> Dedicated follow vehicle for rolling footage</li>
+                        <li><strong>Deliverables:</strong> Full edited photo + video gallery post-event</li>
+                        <li><strong>Direction:</strong> Follow the photographer's lead at each stop</li>
+                    </ul>
+                </div>
+                <div class="logistics-card">
+                    <span class="card-icon">&#9888;&#65039;</span>
+                    <h3>Ground Rules</h3>
+                    <ul>
+                        <li><strong>License:</strong> Valid driver's license required — no exceptions</li>
+                        <li><strong>Speed:</strong> All speed segments are controlled and coordinated</li>
+                        <li><strong>Traffic laws:</strong> Follow all local traffic laws at all times</li>
+                        <li><strong>Convoy:</strong> Stay with the group — no solo detours</li>
+                        <li><strong>The cars:</strong> Treat the Ferraris with respect. You break it, you buy it.</li>
+                    </ul>
+                </div>
+                <div class="logistics-card">
+                    <span class="card-icon">&#9992;&#65039;</span>
+                    <h3>Seaplane &amp; Padel</h3>
+                    <ul>
+                        <li><strong>Padel:</strong> Reserve Padel on Watson Island — racquets provided</li>
+                        <li><strong>Seaplane:</strong> Scenic flight retracing the full rally route</li>
+                        <li><strong>Same location:</strong> Padel courts are at the seaplane base</li>
+                        <li><strong>Weather:</strong> Seaplane flight subject to conditions</li>
+                        <li><strong>Weight:</strong> Weight limits may apply — confirmed on RSVP</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="neon-divider"></div>
+
+    <!-- RSVP -->
+    <section class="rsvp" id="rsvp">
+        <div class="container">
+            <div class="reveal">
+                <p class="section-eyebrow">Lock In</p>
+                <h2 class="rsvp-title">Are You In?</h2>
+                <p class="rsvp-sub">
+                    Seven seats. Seven Ferraris. Confirm your place in the convoy.
+                    Once you're in, you're in.
+                </p>
+            </div>
+            <form class="rsvp-form reveal" id="rsvpForm" onsubmit="handleRSVP(event)">
+                <div class="rsvp-row">
+                    <input type="text" class="rsvp-input" placeholder="First Name" required>
+                    <input type="text" class="rsvp-input" placeholder="Last Name" required>
+                </div>
+                <input type="email" class="rsvp-input" placeholder="Email Address" required>
+                <input type="tel" class="rsvp-input" placeholder="Phone Number" required>
+                <div class="rsvp-row">
+                    <select class="rsvp-select" required>
+                        <option value="" disabled selected>Tuxedo Size</option>
+                        <option>36S</option><option>36R</option>
+                        <option>38S</option><option>38R</option><option>38L</option>
+                        <option>40S</option><option>40R</option><option>40L</option>
+                        <option>42R</option><option>42L</option>
+                        <option>44R</option><option>44L</option>
+                        <option>46R</option><option>46L</option>
+                        <option>48R</option><option>50R</option><option>52R</option>
+                    </select>
+                    <select class="rsvp-select" required>
+                        <option value="" disabled selected>Shoe Size</option>
+                        <option>7</option><option>7.5</option><option>8</option><option>8.5</option>
+                        <option>9</option><option>9.5</option><option>10</option><option>10.5</option>
+                        <option>11</option><option>11.5</option><option>12</option><option>12.5</option>
+                        <option>13</option><option>14</option>
+                    </select>
+                </div>
+                <select class="rsvp-select">
+                    <option value="" disabled selected>Dietary Restrictions (Optional)</option>
+                    <option>None</option><option>Vegetarian</option><option>Vegan</option>
+                    <option>Kosher</option><option>Halal</option><option>Gluten Free</option>
+                    <option>Other</option>
+                </select>
+                <textarea class="rsvp-textarea rsvp-input" placeholder="Notes, questions, or weight for seaplane (optional)" rows="3"></textarea>
+                <button type="submit" class="rsvp-btn">Lock In My Seat</button>
+            </form>
+            <div class="rsvp-success" id="rsvpSuccess">
+                <h3>You're Locked In.</h3>
+                <p>Your seat is confirmed. Watch your inbox for the full rally briefing — call time, locations, and everything you need to know. See you at The Moore.</p>
+            </div>
+            <p class="rsvp-note reveal">By confirming, you agree to follow all ground rules and safety guidelines.</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo" style="font-size:1.2rem; letter-spacing:6px; margin-bottom:1rem;">
+            <span class="fl-cyan">Off</span>
+            <span class="fl-pink"> to the </span>
+            <span class="fl-cyan">Races</span>
+        </div>
+        <p class="footer-tagline" style="font-size:1.1rem;">Off to the Races. Seven Ferraris. One legendary day.</p>
+        <p style="font-family:'Orbitron',sans-serif; font-size:0.5rem; letter-spacing:3px; color:var(--neon-pink); text-shadow:0 0 10px var(--neon-pink-glow); margin-bottom:1.5rem; text-transform:uppercase;">Miami &bull; April 2, 2026</p>
+        <p class="footer-legal">Private Event &mdash; Invitation Only</p>
+    </footer>
+
+    <script>
+        // ── Nav scroll ──
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        // ── Reveal on scroll ──
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('visible');
+            });
+        }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // ── Countdown timer ──
+        // Rally: April 2, 2026 at 12:00 PM noon, Miami (EDT = UTC-4)
+        const RALLY_DATE = new Date('2026-04-02T12:00:00-04:00').getTime();
+
+        function updateCountdown() {
+            const now = Date.now();
+            const diff = RALLY_DATE - now;
+
+            if (diff <= 0) {
+                document.getElementById('cd-days').textContent = '00';
+                document.getElementById('cd-hrs').textContent = '00';
+                document.getElementById('cd-min').textContent = '00';
+                document.getElementById('cd-sec').textContent = '00';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hrs = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const min = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const sec = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+            document.getElementById('cd-hrs').textContent = String(hrs).padStart(2, '0');
+            document.getElementById('cd-min').textContent = String(min).padStart(2, '0');
+            document.getElementById('cd-sec').textContent = String(sec).padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // ── Route map animation ──
+        // WHY: Draw the route line when the map scrolls into view for a cinematic reveal
+        const mapObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    document.getElementById('routePath').classList.add('drawn');
+                    document.getElementById('routeGlow').classList.add('drawn');
+                    // WHY: Stagger the stop dots after the line finishes drawing
+                    const dots = document.querySelectorAll('.route-stop-dot, .route-stop-label, .route-start-marker, .route-end-marker');
+                    dots.forEach((dot, i) => {
+                        setTimeout(() => dot.classList.add('visible'), 2500 + i * 100);
+                    });
+                    mapObserver.disconnect();
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const mapContainer = document.getElementById('routeMapContainer');
+        if (mapContainer) mapObserver.observe(mapContainer);
+
+        // ── RSVP ──
+        function handleRSVP(e) {
+            e.preventDefault();
+            document.getElementById('rsvpForm').style.display = 'none';
+            const success = document.getElementById('rsvpSuccess');
+            success.style.display = 'block';
+            success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // ── Particles ──
+        // WHY: Floating particles add atmosphere and cinematic energy to the hero
+        const particleContainer = document.getElementById('particles');
+        if (particleContainer) {
+            for (let i = 0; i < 30; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDuration = (8 + Math.random() * 12) + 's';
+                p.style.animationDelay = (Math.random() * 10) + 's';
+                p.style.width = p.style.height = (1 + Math.random() * 3) + 'px';
+                // WHY: Alternate colors between cyan and pink for variety
+                if (Math.random() > 0.5) {
+                    p.style.background = 'var(--neon-pink)';
+                    p.style.boxShadow = '0 0 6px var(--neon-pink-glow)';
+                }
+                particleContainer.appendChild(p);
+            }
+        }
+
+        // ── Parallax on full-bleed sections ──
+        // WHY: Subtle parallax on scroll makes full-bleed photos feel cinematic
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.full-bleed img').forEach(img => {
+                const rect = img.parentElement.getBoundingClientRect();
+                const scrollPercent = (rect.top + rect.height) / (window.innerHeight + rect.height);
+                const offset = (scrollPercent - 0.5) * 40;
+                img.style.transform = `translateY(${offset}px)`;
+            });
+        });
+
+        // ── Smooth scroll nav ──
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - 60;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

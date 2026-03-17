@@ -1,0 +1,15 @@
+{
+  "name": "miami-ferrari-rally",
+  "version": "1.0.0",
+  "description": "Ground to Air — Miami Ferrari Rally Experience",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "author": "",
+  "license": "PROPRIETARY",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
