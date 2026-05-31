@@ -1408,6 +1408,9 @@
         }
 
         /* ── RESPONSIVE ── */
+        /* WHY: Formation grid responsive */
+        #formations > .container > div:nth-child(2) { }
+        #driver-rules > .container > div:nth-child(2) { }
 
         @media (max-width: 900px) {
             .nav-links { display: none; }
@@ -1417,6 +1420,8 @@
             .dresscode-grid { grid-template-columns: 1fr 1fr; }
             .logistics-grid { grid-template-columns: 1fr; }
             .hero-stats { gap: 1.5rem; }
+            #formations > .container > div:nth-child(2) { grid-template-columns: 1fr !important; }
+            #driver-rules > .container > div:nth-child(2) { grid-template-columns: 1fr !important; }
 
             .stop-card,
             .stop-card:nth-child(even) {
@@ -1454,7 +1459,8 @@
             <li><a href="#playbook">Playbook</a></li>
             <li><a href="#route">Route</a></li>
             <li><a href="#stops">Stops</a></li>
-            <li><a href="/game-plan.html">Game Plan</a></li>
+            <li><a href="#formations">Formations</a></li>
+            <li><a href="#driver-rules">The Moves</a></li>
             <li><a href="#logistics">Logistics</a></li>
             <li><a href="#rsvp" class="nav-cta">RSVP</a></li>
         </ul>
@@ -2307,22 +2313,263 @@
 
     <div class="neon-divider"></div>
 
-
     <!-- GAME PLAN CTA -->
     <section class="section-pad" style="background:var(--dark); position:relative; z-index:1; text-align:center;">
         <div class="container">
-            <div class="reveal">
-                <p class="section-eyebrow">Game Plan</p>
-                <h2 class="section-title">Formations, Radio &amp; Schedule</h2>
-                <p class="section-sub" style="margin:0 auto; margin-bottom:2.5rem;">
-                    Everything you need to know for rally day &mdash; driving formations, radio calls, and the full run of show.
-                </p>
-                <a href="/game-plan.html" style="display:inline-block; font-family:'Orbitron',sans-serif; font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; text-decoration:none; color:var(--white); background:linear-gradient(135deg, var(--neon-pink), var(--neon-purple)); padding:1rem 3rem; border-radius:2px; transition:transform 0.3s, box-shadow 0.3s; box-shadow:0 0 20px var(--neon-pink-glow);">View Game Plan &rarr;</a>
+            <div class="reveal" style="text-align:center;">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px;" class="reveal">
+                <!-- Formation A: Straight Line -->
+                <div style="background:rgba(20,14,24,0.8); padding:2.5rem; border:1px solid rgba(255,45,149,0.08); position:relative; overflow:hidden;">
+                    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--neon-pink),var(--neon-cyan));opacity:0.5;"></div>
+                    <div style="font-family:'Orbitron',sans-serif; font-size:0.5rem; letter-spacing:3px; color:var(--neon-pink); text-shadow:0 0 10px var(--neon-pink-glow); text-transform:uppercase; margin-bottom:0.5rem;">The Classic</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1.1rem; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--cream); margin-bottom:0.8rem;">Straight Line</h3>
+                    <p style="font-size:0.85rem; color:var(--gray); line-height:1.7; margin-bottom:1.5rem;">Single file across the bridge. Keep a few car lengths between you. Nice and easy at 25 mph. This is the money shot &mdash; eight red dots on turquoise water.</p>
+                    <pre style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--neon-cyan); line-height:1.8; background:rgba(0,0,0,0.3); padding:1rem; border-radius:4px; overflow-x:auto; text-shadow:0 0 8px var(--neon-cyan-glow);">  Direction &rarr;
+
+  [911] ........... [1] &mdash; [2] &mdash; [3] &mdash; [4] &mdash; [5] &mdash; [6] &mdash; [7] &mdash; [8] ........... [RR]
+
+  911 = Porsche pre-runner out front  |  RR = Range Rover tail</pre>
+                    <div style="margin-top:1rem;">
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.45rem; letter-spacing:1.5px; text-transform:uppercase; padding:0.3rem 0.6rem; border:1px solid rgba(0,229,255,0.15); color:var(--neon-cyan); border-radius:1px;">Bridge</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.45rem; letter-spacing:1.5px; text-transform:uppercase; padding:0.3rem 0.6rem; border:1px solid rgba(0,229,255,0.15); color:var(--neon-cyan); border-radius:1px; margin-left:0.3rem;">25 MPH</span>
+                    </div>
+                </div>
+                <!-- Formation B: Flying V -->
+                <div style="background:rgba(20,14,24,0.8); padding:2.5rem; border:1px solid rgba(255,107,53,0.08); position:relative; overflow:hidden;">
+                    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--sunset-orange),var(--neon-pink));opacity:0.5;"></div>
+                    <div style="font-family:'Orbitron',sans-serif; font-size:0.5rem; letter-spacing:3px; color:var(--sunset-orange); text-shadow:0 0 10px rgba(255,107,53,0.5); text-transform:uppercase; margin-bottom:0.5rem;">The Showstopper</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1.1rem; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--cream); margin-bottom:0.8rem;">Flying V</h3>
+                    <p style="font-size:0.85rem; color:var(--gray); line-height:1.7; margin-bottom:1.5rem;">The one everyone&rsquo;s going to post. Eight Ferraris in an arrowhead across 3 lanes. Drone shoots from directly above. This is the shot that goes viral.</p>
+                    <pre style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--neon-pink); line-height:1.8; background:rgba(0,0,0,0.3); padding:1rem; border-radius:4px; overflow-x:auto; text-shadow:0 0 8px var(--neon-pink-glow);">  Direction &rarr;
+
+          [911] out front
+              [1]           &larr; Center &mdash; LEAD
+          [2]     [3]       &larr; Left + Right
+      [4]             [5]   &larr; Left + Right
+          [6]     [7]       &larr; Left + Right
+              [8]           &larr; Center &mdash; TAIL
+          [RR] + [TRUCK] behind</pre>
+                    <div style="margin-top:1rem;">
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.45rem; letter-spacing:1.5px; text-transform:uppercase; padding:0.3rem 0.6rem; border:1px solid rgba(255,45,149,0.15); color:var(--neon-pink); border-radius:1px;">Highway</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.45rem; letter-spacing:1.5px; text-transform:uppercase; padding:0.3rem 0.6rem; border:1px solid rgba(255,45,149,0.15); color:var(--neon-pink); border-radius:1px; margin-left:0.3rem;">45 MPH</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.45rem; letter-spacing:1.5px; text-transform:uppercase; padding:0.3rem 0.6rem; border:1px solid rgba(255,45,149,0.15); color:var(--neon-pink); border-radius:1px; margin-left:0.3rem;">3 Lanes</span>
+                    </div>
+                </div>
+                <!-- Formation C: Staggered -->
+                <div style="background:rgba(20,14,24,0.8); padding:2.5rem; border:1px solid rgba(0,229,255,0.08); position:relative; overflow:hidden;">
+                    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--neon-cyan),var(--neon-purple));opacity:0.5;"></div>
+                    <div style="font-family:'Orbitron',sans-serif; font-size:0.5rem; letter-spacing:3px; color:var(--neon-cyan); text-shadow:0 0 10px var(--neon-cyan-glow); text-transform:uppercase; margin-bottom:0.5rem;">The Default</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1.1rem; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--cream); margin-bottom:0.8rem;">Staggered</h3>
+                    <p style="font-size:0.85rem; color:var(--gray); line-height:1.7; margin-bottom:1.5rem;">The chill one. When we&rsquo;re just cruising between spots, spread out in a natural zipper pattern. Looks great, feels easy. No stress.</p>
+                    <pre style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--neon-cyan); line-height:1.8; background:rgba(0,0,0,0.3); padding:1rem; border-radius:4px; overflow-x:auto; text-shadow:0 0 8px var(--neon-cyan-glow);">  Direction &rarr;
+
+  [911] ahead clearing the way
+
+  Lane 1:  [1]         [4]         [7]
+  Lane 2:       [2]         [5]         [8]
+  Lane 3:            [3]         [6]
+
+  [RR] + [TRUCK] trailing behind</pre>
+                    <div style="margin-top:1rem;">
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.45rem; letter-spacing:1.5px; text-transform:uppercase; padding:0.3rem 0.6rem; border:1px solid rgba(0,229,255,0.15); color:var(--neon-cyan); border-radius:1px;">Default</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.45rem; letter-spacing:1.5px; text-transform:uppercase; padding:0.3rem 0.6rem; border:1px solid rgba(0,229,255,0.15); color:var(--neon-cyan); border-radius:1px; margin-left:0.3rem;">Transitions</span>
+                    </div>
+                </div>
+                <!-- Formation D: Echelon -->
+                <div style="background:rgba(20,14,24,0.8); padding:2.5rem; border:1px solid rgba(123,47,247,0.08); position:relative; overflow:hidden;">
+                    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--neon-purple),var(--sunset-yellow));opacity:0.5;"></div>
+                    <div style="font-family:'Orbitron',sans-serif; font-size:0.5rem; letter-spacing:3px; color:#a78bfa; text-shadow:0 0 10px var(--neon-purple-glow); text-transform:uppercase; margin-bottom:0.5rem;">The Diagonal</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1.1rem; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--cream); margin-bottom:0.8rem;">Echelon</h3>
+                    <p style="font-size:0.85rem; color:var(--gray); line-height:1.7; margin-bottom:1.5rem;">A diagonal line &mdash; looks cool on approach. Naturally merges into single file when the road narrows. Easy to pull off.</p>
+                    <pre style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:#a78bfa; line-height:1.8; background:rgba(0,0,0,0.3); padding:1rem; border-radius:4px; overflow-x:auto; text-shadow:0 0 8px var(--neon-purple-glow);">  Direction &rarr;
+
+  Lane 1:  [1]
+  Lane 2:       [2]
+  Lane 3:            [3]
+  Lane 1:                 [4]
+  Lane 2:                      [5]  ...</pre>
+                    <div style="margin-top:1rem;">
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.45rem; letter-spacing:1.5px; text-transform:uppercase; padding:0.3rem 0.6rem; border:1px solid rgba(123,47,247,0.15); color:#a78bfa; border-radius:1px;">Approach</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.45rem; letter-spacing:1.5px; text-transform:uppercase; padding:0.3rem 0.6rem; border:1px solid rgba(123,47,247,0.15); color:#a78bfa; border-radius:1px; margin-left:0.3rem;">35 MPH</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <div class="neon-divider"></div>
+
+    <!-- DRIVER PLAYBOOK -->
+    <section class="section-pad" id="driver-rules" style="background:var(--black); position:relative; z-index:1;">
+        <div class="container">
+            <div class="reveal" style="text-align:center; margin-bottom:3rem;">
+                <p class="section-eyebrow flicker">Quick Heads Up</p>
+                <h2 class="section-title">How the Day Works</h2>
+                <p class="section-sub" style="margin:0 auto;">
+                    Nothing complicated. Just a few things so the footage looks amazing
+                    and everyone has a good time.
+                </p>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px;" class="reveal">
+                <div style="background:rgba(20,14,24,0.8); padding:2.5rem; border:1px solid rgba(255,45,149,0.08);">
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; color:var(--neon-pink); text-shadow:0 0 10px var(--neon-pink-glow); margin-bottom:1.5rem; padding-bottom:0.8rem; border-bottom:1px solid rgba(255,255,255,0.06);">Good to Know</h3>
+                    <ul style="list-style:none;">
+                        <li style="font-size:0.95rem; color:rgba(255,255,255,0.8); padding:0.7rem 0 0.7rem 2rem; border-bottom:1px solid rgba(255,255,255,0.04); position:relative; line-height:1.6;">
+                            <span style="position:absolute;left:0;top:0.9rem;width:8px;height:8px;border-radius:50%;background:var(--neon-pink);box-shadow:0 0 8px var(--neon-pink-glow);"></span>
+                            <strong style="color:#fff;">You&rsquo;ll get a number (1-8).</strong> That&rsquo;s your spot in the lineup. Same spot every time so nobody has to think about it.
+                        </li>
+                        <li style="font-size:0.95rem; color:rgba(255,255,255,0.8); padding:0.7rem 0 0.7rem 2rem; border-bottom:1px solid rgba(255,255,255,0.04); position:relative; line-height:1.6;">
+                            <span style="position:absolute;left:0;top:0.9rem;width:8px;height:8px;border-radius:50%;background:var(--neon-pink);box-shadow:0 0 8px var(--neon-pink-glow);"></span>
+                            <strong style="color:#fff;">Follow the lead car&rsquo;s speed.</strong> Keep it smooth and steady. The footage looks way better when everyone&rsquo;s in sync.
+                        </li>
+                        <li style="font-size:0.95rem; color:rgba(255,255,255,0.8); padding:0.7rem 0 0.7rem 2rem; border-bottom:1px solid rgba(255,255,255,0.04); position:relative; line-height:1.6;">
+                            <span style="position:absolute;left:0;top:0.9rem;width:8px;height:8px;border-radius:50%;background:var(--neon-pink);box-shadow:0 0 8px var(--neon-pink-glow);"></span>
+                            <strong style="color:#fff;">Stay with the group.</strong> We&rsquo;re shooting specific visuals at each spot &mdash; save the solo laps for after.
+                        </li>
+                        <li style="font-size:0.95rem; color:rgba(255,255,255,0.8); padding:0.7rem 0 0.7rem 2rem; position:relative; line-height:1.6;">
+                            <span style="position:absolute;left:0;top:0.9rem;width:8px;height:8px;border-radius:50%;background:var(--neon-pink);box-shadow:0 0 8px var(--neon-pink-glow);"></span>
+                            <strong style="color:#fff;">If anything happens, just keep going.</strong> There&rsquo;s a support car behind the group that handles any issues.
+                        </li>
+                    </ul>
+                </div>
+                <div style="background:rgba(20,14,24,0.8); padding:2.5rem; border:1px solid rgba(0,229,255,0.08);">
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; color:var(--neon-cyan); text-shadow:0 0 10px var(--neon-cyan-glow); margin-bottom:1.5rem; padding-bottom:0.8rem; border-bottom:1px solid rgba(255,255,255,0.06);">What You&rsquo;ll Hear on the Radio</h3>
+                    <div style="display:grid; gap:0.5rem;">
+                        <div style="display:flex; align-items:center; gap:1rem; padding:0.6rem 0; border-bottom:1px solid rgba(255,255,255,0.04);">
+                            <span style="font-family:'Orbitron',sans-serif; font-size:0.7rem; font-weight:800; color:var(--neon-cyan); text-shadow:0 0 10px var(--neon-cyan-glow); min-width:80px;">&ldquo;LET&rsquo;S GO&rdquo;</span>
+                            <span style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Time to move. Follow the lead car out.</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:1rem; padding:0.6rem 0; border-bottom:1px solid rgba(255,255,255,0.04);">
+                            <span style="font-family:'Orbitron',sans-serif; font-size:0.7rem; font-weight:800; color:var(--sunset-orange); text-shadow:0 0 10px rgba(255,107,53,0.5); min-width:80px;">&ldquo;HOLD UP&rdquo;</span>
+                            <span style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Stay where you are. Keep your speed steady.</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:1rem; padding:0.6rem 0; border-bottom:1px solid rgba(255,255,255,0.04);">
+                            <span style="font-family:'Orbitron',sans-serif; font-size:0.7rem; font-weight:800; color:var(--neon-pink); text-shadow:0 0 10px var(--neon-pink-glow); min-width:80px;">&ldquo;SHOOTING&rdquo;</span>
+                            <span style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Drone&rsquo;s up and filming. Look sharp, hold your line.</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:1rem; padding:0.6rem 0; border-bottom:1px solid rgba(255,255,255,0.04);">
+                            <span style="font-family:'Orbitron',sans-serif; font-size:0.7rem; font-weight:800; color:var(--neon-cyan); text-shadow:0 0 10px var(--neon-cyan-glow); min-width:80px;">&ldquo;GOT IT&rdquo;</span>
+                            <span style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Shot&rsquo;s done. Relax and cruise.</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:1rem; padding:0.6rem 0; border-bottom:1px solid rgba(255,255,255,0.04);">
+                            <span style="font-family:'Orbitron',sans-serif; font-size:0.7rem; font-weight:800; color:var(--sunset-yellow); text-shadow:0 0 10px rgba(255,215,0,0.4); min-width:80px;">&ldquo;REGROUP&rdquo;</span>
+                            <span style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Formation got messy. Just spread out and chill &mdash; we&rsquo;ll set up again.</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:1rem; padding:0.6rem 0;">
+                            <span style="font-family:'Orbitron',sans-serif; font-size:0.7rem; font-weight:800; color:var(--ferrari-red); text-shadow:0 0 10px rgba(220,38,38,0.5); min-width:80px;">&ldquo;PULL OVER&rdquo;</span>
+                            <span style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Something came up. Find a safe spot and stop.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Reset Protocol -->
+            <div class="reveal" style="margin-top:2px; background:rgba(20,14,24,0.8); border:1px solid rgba(255,215,0,0.1); padding:2rem 2.5rem; display:flex; align-items:center; gap:2rem;">
+                <div style="flex-shrink:0;">
+                    <div style="width:60px; height:60px; border-radius:50%; border:2px solid var(--sunset-yellow); display:flex; align-items:center; justify-content:center; box-shadow:0 0 20px rgba(255,215,0,0.15);">
+                        <span style="font-size:1.5rem;">&#128588;</span>
+                    </div>
+                </div>
+                <div>
+                    <p style="font-family:'Orbitron',sans-serif; font-size:0.65rem; letter-spacing:3px; text-transform:uppercase; color:var(--sunset-yellow); text-shadow:0 0 10px rgba(255,215,0,0.3); margin-bottom:0.4rem;">If Things Get Messy</p>
+                    <p style="font-size:0.9rem; color:rgba(255,255,255,0.65); line-height:1.7;">No big deal. If a formation doesn&rsquo;t come together or traffic gets in the way, just <strong style="color:#fff;">spread out, slow down, and keep cruising.</strong> We&rsquo;ll set it up again at the next stop. Nobody&rsquo;s keeping score.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="neon-divider"></div>
+
+    <!-- PRODUCTION FLOW / RUN OF SHOW -->
+    <section class="section-pad" id="production" style="background:var(--dark); position:relative; z-index:1;">
+        <div class="container">
+            <div class="reveal" style="text-align:center; margin-bottom:3rem;">
+                <p class="section-eyebrow flicker">The Flow</p>
+                <h2 class="section-title">How the Day Unfolds</h2>
+                <p class="section-sub" style="margin:0 auto;">
+                    Here&rsquo;s the rough game plan. Times are flexible &mdash;
+                    we&rsquo;re here to have fun, not run a drill.
+                </p>
+            </div>
+            <!-- Timeline -->
+            <div class="reveal" style="position:relative; padding-left:3rem;">
+                <!-- Vertical neon line -->
+                <div style="position:absolute; left:1rem; top:0; bottom:0; width:2px; background:linear-gradient(180deg, var(--neon-pink), var(--neon-cyan), var(--neon-purple), var(--sunset-yellow), var(--neon-pink)); opacity:0.4;"></div>
+
+                <!-- Act I -->
+                <div style="position:relative; margin-bottom:3rem;">
+                    <div style="position:absolute; left:-2.35rem; top:0.2rem; width:16px; height:16px; border-radius:50%; background:var(--neon-pink); box-shadow:0 0 15px var(--neon-pink-glow);"></div>
+                    <div style="font-family:'Orbitron',sans-serif; font-size:0.5rem; letter-spacing:3px; color:var(--neon-pink); text-shadow:0 0 10px var(--neon-pink-glow); text-transform:uppercase; margin-bottom:0.3rem;">Morning</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--cream); margin-bottom:0.8rem;">Meet Up &amp; First Photos</h3>
+                    <div style="display:grid; grid-template-columns:auto 1fr; gap:0.3rem 1rem; font-size:0.85rem; color:rgba(255,255,255,0.6); line-height:1.7;">
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--neon-pink); font-weight:600;">ARRIVE</span><span>Show up at The Moore. Suited up. Coffee in hand. Vibes on.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--neon-pink); font-weight:600;">QUICK RUNDOWN</span><span>Quick walk-through of the day &mdash; where we&rsquo;re going, how the formations work.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--neon-pink); font-weight:600;">FIRST SHOTS</span><span>Fleet lineup. Group photo. Individual car shots with the drone. Engine start moment.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--neon-pink); font-weight:600;">ROLL OUT</span><span>Everybody in. Engines on. Let&rsquo;s go.</span>
+                    </div>
+                </div>
+
+                <!-- Act II -->
+                <div style="position:relative; margin-bottom:3rem;">
+                    <div style="position:absolute; left:-2.35rem; top:0.2rem; width:16px; height:16px; border-radius:50%; background:var(--sunset-orange); box-shadow:0 0 15px rgba(255,107,53,0.5);"></div>
+                    <div style="font-family:'Orbitron',sans-serif; font-size:0.5rem; letter-spacing:3px; color:var(--sunset-orange); text-shadow:0 0 10px rgba(255,107,53,0.5); text-transform:uppercase; margin-bottom:0.3rem;">Late Morning</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--cream); margin-bottom:0.8rem;">The Bridge &amp; Driving Shots</h3>
+                    <div style="display:grid; grid-template-columns:auto 1fr; gap:0.3rem 1rem; font-size:0.85rem; color:rgba(255,255,255,0.6); line-height:1.7;">
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--sunset-orange); font-weight:600;">APPROACH</span><span>Line up for the bridge. Single file. Nice and easy.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--sunset-orange); font-weight:600;">BRIDGE RUN</span><span>Cruise across at 25 mph. Drone&rsquo;s above getting the hero shot. We&rsquo;ll do it twice.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--sunset-orange); font-weight:600;">SECOND PASS</span><span>Loop back, tighten it up, different drone angle. Easy.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--sunset-orange); font-weight:600;">CRUISE ON</span><span>Spread out and head to the mansion.</span>
+                    </div>
+                </div>
+
+                <!-- Act III -->
+                <div style="position:relative; margin-bottom:3rem;">
+                    <div style="position:absolute; left:-2.35rem; top:0.2rem; width:16px; height:16px; border-radius:50%; background:var(--neon-cyan); box-shadow:0 0 15px var(--neon-cyan-glow);"></div>
+                    <div style="font-family:'Orbitron',sans-serif; font-size:0.5rem; letter-spacing:3px; color:var(--neon-cyan); text-shadow:0 0 10px var(--neon-cyan-glow); text-transform:uppercase; margin-bottom:0.3rem;">Midday</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--cream); margin-bottom:0.8rem;">Mansion, Yacht &amp; Ocean Drive</h3>
+                    <div style="display:grid; grid-template-columns:auto 1fr; gap:0.3rem 1rem; font-size:0.85rem; color:rgba(255,255,255,0.6); line-height:1.7;">
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--neon-cyan); font-weight:600;">MANSION</span><span>Park on the lawn. Hang by the pool. Chill shots. No rush.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--neon-cyan); font-weight:600;">YACHT</span><span>Hop on the Pardo. Drinks, photos at the helm, skyline behind you.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--neon-cyan); font-weight:600;">SPEED RUN</span><span>79th Street &mdash; open road, open it up. Rolling shots and raw engine sound.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--neon-cyan); font-weight:600;">OCEAN DRIVE</span><span>Slow cruise past the Art Deco hotels. Classic Miami photos.</span>
+                    </div>
+                </div>
+
+                <!-- Act IV -->
+                <div style="position:relative; margin-bottom:3rem;">
+                    <div style="position:absolute; left:-2.35rem; top:0.2rem; width:16px; height:16px; border-radius:50%; background:var(--neon-purple); box-shadow:0 0 15px var(--neon-purple-glow);"></div>
+                    <div style="font-family:'Orbitron',sans-serif; font-size:0.5rem; letter-spacing:3px; color:#a78bfa; text-shadow:0 0 10px var(--neon-purple-glow); text-transform:uppercase; margin-bottom:0.3rem;">Afternoon</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--cream); margin-bottom:0.8rem;">Padel, Seaplane &amp; The V</h3>
+                    <div style="display:grid; grid-template-columns:auto 1fr; gap:0.3rem 1rem; font-size:0.85rem; color:rgba(255,255,255,0.6); line-height:1.7;">
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:#a78bfa; font-weight:600;">MACARTHUR</span><span>Causeway cruise. We&rsquo;ll try the Flying V here &mdash; the drone shot everyone&rsquo;s going to want to post.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:#a78bfa; font-weight:600;">PADEL</span><span>Hit the courts. Play a few sets. Ferraris parked right behind the glass walls.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:#a78bfa; font-weight:600;">SEAPLANE</span><span>Line the cars up with the seaplanes. Then take a flight over the whole route.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:#a78bfa; font-weight:600;">SOUTH POINTE</span><span>Golden hour. Ocean views. Group photo. The light makes this one easy.</span>
+                    </div>
+                </div>
+
+                <!-- Act V -->
+                <div style="position:relative;">
+                    <div style="position:absolute; left:-2.35rem; top:0.2rem; width:16px; height:16px; border-radius:50%; background:var(--sunset-yellow); box-shadow:0 0 15px rgba(255,215,0,0.4);"></div>
+                    <div style="font-family:'Orbitron',sans-serif; font-size:0.5rem; letter-spacing:3px; color:var(--sunset-yellow); text-shadow:0 0 10px rgba(255,215,0,0.3); text-transform:uppercase; margin-bottom:0.3rem;">Evening</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--cream); margin-bottom:0.8rem;">Curated &amp; Celebration</h3>
+                    <div style="display:grid; grid-template-columns:auto 1fr; gap:0.3rem 1rem; font-size:0.85rem; color:rgba(255,255,255,0.6); line-height:1.7;">
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--sunset-yellow); font-weight:600;">ARRIVAL</span><span>Land from the seaplane. Meet back at the cars. Roll into the Design District.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--sunset-yellow); font-weight:600;">CURATED</span><span>Park your Ferraris next to some of the rarest cars on earth. Final photos.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--sunset-yellow); font-weight:600;">TOAST</span><span>Drinks. Laughs. Relive the highlights. Photos delivered in 2 weeks, film in 6.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--sunset-yellow); font-weight:600;">THAT&rsquo;S A WRAP</span><span>Best bachelor party ever. Done.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CINEMATIC QUOTE — Production -->
+    <div class="quote-break reveal">
+        <blockquote>
+            &ldquo;Your best friends. Eight red Ferraris. One city that was built for exactly this.&rdquo;
+            <span class="quote-accent">&mdash; Off to the Races</span>
+        </blockquote>
+    </div>
 
     <!-- DRESS CODE -->
     <section class="dresscode section-pad">
@@ -2416,10 +2663,11 @@
     <section class="logistics section-pad" id="logistics">
         <div class="container">
             <div class="reveal" style="text-align:center;">
-                <p class="section-eyebrow">Logistics</p>
+                <p class="section-eyebrow flicker">Mission Brief</p>
                 <h2 class="section-title">Know Before You Go</h2>
                 <p class="section-sub" style="margin:0 auto;">
-                    It's a full day. Here's what to expect so you're set when you show up.
+                    This is a full-day production. Read this section carefully.
+                    Show up prepared. Show up on time. Show up sharp.
                 </p>
             </div>
             <div class="logistics-grid reveal">

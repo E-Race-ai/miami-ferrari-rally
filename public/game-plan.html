@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Plan — OFF TO THE RACES</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0408;
+            --dark: #0f0a12;
+            --dark-card: #140e18;
+            --neon-pink: #ff2d95;
+            --neon-pink-glow: rgba(255,45,149,0.4);
+            --neon-cyan: #00e5ff;
+            --neon-cyan-glow: rgba(0,229,255,0.4);
+            --neon-purple: #7b2ff7;
+            --neon-purple-glow: rgba(123,47,247,0.3);
+            --sunset-orange: #ff6b35;
+            --sunset-yellow: #ffd700;
+            --ferrari-red: #dc2626;
+            --chrome: #c0c0c0;
+            --cream: #f0e6f6;
+            --white: #ffffff;
+            --gray: #8888aa;
+            --grid-color: rgba(123,47,247,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--cream);
+            overflow-x: hidden;
+        }
+
+        .retro-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse at 50% 30%, rgba(0,0,0,0.4) 0%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 30%, rgba(0,0,0,0.4) 0%, transparent 70%);
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            background: transparent;
+            transition: background 0.4s, backdrop-filter 0.4s;
+        }
+
+        nav.scrolled {
+            background: rgba(10,4,8,0.92);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .nav-logo a {
+            text-decoration: none;
+        }
+
+        .logo-ground { color: var(--neon-cyan); }
+        .logo-to { color: var(--gray); font-size: 0.6rem; margin: 0 0.3rem; letter-spacing: 2px; }
+        .logo-air { color: var(--neon-pink); }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.55rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--neon-cyan); }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            padding: 0.5rem 1.2rem;
+            border-radius: 2px;
+            color: var(--white) !important;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-pad { padding: 6rem 0; position: relative; z-index: 1; }
+
+        .section-eyebrow {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--neon-pink);
+            text-shadow: 0 0 15px var(--neon-pink-glow);
+            margin-bottom: 0.8rem;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+
+        .section-sub {
+            font-size: 1.05rem;
+            color: var(--gray);
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        .neon-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--neon-pink) 30%, var(--neon-cyan) 70%, transparent 100%);
+            opacity: 0.3;
+        }
+
+        /* HERO HEADER */
+        .page-header {
+            padding: 8rem 0 4rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header .back-link {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.55rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--neon-cyan);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 2rem;
+            transition: color 0.3s;
+        }
+
+        .page-header .back-link:hover { color: var(--neon-pink); }
+
+        .page-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* FLEET TABLE */
+        .fleet-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .fleet-table th {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.55rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--neon-cyan);
+            text-align: left;
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid rgba(0,229,255,0.15);
+        }
+
+        .fleet-table td {
+            padding: 0.7rem 1rem;
+            color: rgba(255,255,255,0.7);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .fleet-table td:first-child {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--black);
+            border-top: 1px solid rgba(255,255,255,0.04);
+            position: relative;
+            z-index: 1;
+        }
+
+        .fl-cyan { color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan-glow); }
+        .fl-pink { color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink-glow); }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .formation-grid { grid-template-columns: 1fr !important; }
+            .rules-grid { grid-template-columns: 1fr !important; }
+            .page-header h1 { font-size: 1.8rem; letter-spacing: 3px; }
+        }
+
+        @media (max-width: 600px) {
+            .page-header { padding: 6rem 0 3rem; }
+            .section-title { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="retro-grid"></div>
+
+    <!-- NAV -->
+    <nav id="nav">
+        <div class="nav-logo">
+            <a href="/">
+                <span class="logo-ground">Off</span>
+                <span class="logo-to">to the</span>
+                <span class="logo-air">Races</span>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/#playbook">Playbook</a></li>
+            <li><a href="/#route">Route</a></li>
+            <li><a href="/#stops">Stops</a></li>
+            <li><a href="#formations">Formations</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="/#rsvp" class="nav-cta">RSVP</a></li>
+        </ul>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <a href="/" class="back-link">&larr; Back to Main Site</a>
+        <h1>Game Plan</h1>
+        <p>Everything you need to know for rally day. Formations, radio calls, and the schedule.</p>
+    </div>
+
+    <div class="neon-divider"></div>
+
+    <!-- THE FLEET -->
+    <section class="section-pad" style="background:var(--dark);">
+        <div class="container">
+            <div class="reveal" style="text-align:center; margin-bottom:3rem;">
+                <p class="section-eyebrow">The Fleet</p>
+                <h2 class="section-title">11 Vehicles</h2>
+                <p class="section-sub" style="margin:0 auto;">
+                    8 Ferraris plus 3 support vehicles. Here's the full lineup.
+                </p>
+            </div>
+            <div class="reveal" style="background:rgba(20,14,24,0.8); border:1px solid rgba(0,229,255,0.08); border-radius:4px; overflow:hidden;">
+                <table class="fleet-table">
+                    <thead>
+                        <tr>
+                            <th>Vehicle</th>
+                            <th>Color</th>
+                            <th>Role</th>
+                            <th>Position</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Ferrari #1 &ndash; #8</td><td style="color:var(--ferrari-red);">Red</td><td>Rally cars</td><td>Main convoy, numbered positions</td></tr>
+                        <tr><td>Porsche 911</td><td style="color:var(--ferrari-red);">Red</td><td>Pre-runner &amp; traffic blocker</td><td>Always out front, clearing the way</td></tr>
+                        <tr><td>Range Rover LWB</td><td style="color:rgba(255,255,255,0.9);">White</td><td>Tail vehicle &amp; traffic barricade</td><td>Always at the back of the convoy</td></tr>
+                        <tr><td>Chevy Truck</td><td style="color:rgba(100,100,100,0.9);">Black</td><td>Film crew in the bed</td><td>Moves around for angles</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="reveal" style="margin-top:1.5rem; background:rgba(20,14,24,0.8); border:1px solid rgba(255,215,0,0.08); padding:1.2rem 1.5rem; border-radius:4px;">
+                <p style="font-size:0.9rem; color:rgba(255,255,255,0.6); line-height:1.7;">
+                    <strong style="color:var(--sunset-yellow);">Rentals:</strong> Ferraris supplied by <strong style="color:#fff;">MVP Exotic Rentals</strong> and <strong style="color:#fff;">MPH Club</strong>. They'll be lined up and ready at The Moore when you arrive. Keys and walkthrough provided on site.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="neon-divider"></div>
+
+    <!-- FORMATIONS -->
+    <section class="section-pad" id="formations" style="background:var(--black);">
+        <div class="container">
+            <div class="reveal" style="text-align:center; margin-bottom:3rem;">
+                <p class="section-eyebrow">Driving Formations</p>
+                <h2 class="section-title">How We Line Up</h2>
+                <p class="section-sub" style="margin:0 auto;">
+                    Four formations. You'll be told which one over the radio before each segment. Just find your number and hold your spot.
+                </p>
+            </div>
+            <div class="formation-grid reveal" style="display:grid; grid-template-columns:1fr 1fr; gap:2px;">
+
+                <!-- Straight Line -->
+                <div style="background:rgba(20,14,24,0.8); padding:2.5rem; border:1px solid rgba(255,45,149,0.08); position:relative; overflow:hidden;">
+                    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--neon-pink),var(--neon-cyan));opacity:0.5;"></div>
+                    <div style="font-family:'Orbitron',sans-serif; font-size:0.5rem; letter-spacing:3px; color:var(--neon-pink); text-shadow:0 0 10px var(--neon-pink-glow); text-transform:uppercase; margin-bottom:0.5rem;">Formation 1</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1.1rem; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--cream); margin-bottom:0.8rem;">Straight Line</h3>
+                    <p style="font-size:0.85rem; color:var(--gray); line-height:1.7; margin-bottom:1.5rem;">Single file. Keep 2&ndash;3 car lengths between you. Match the lead car's speed. Used on bridges and single-lane roads.</p>
+                    <pre style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--neon-cyan); line-height:1.8; background:rgba(0,0,0,0.3); padding:1rem; border-radius:4px; overflow-x:auto; text-shadow:0 0 8px var(--neon-cyan-glow);">  Direction &rarr;
+
+  [911] ........... [1] &mdash; [2] &mdash; [3] &mdash; [4] &mdash; [5] &mdash; [6] &mdash; [7] &mdash; [8] ........... [RR]
+
+  911 = Porsche pre-runner  |  RR = Range Rover tail</pre>
+                    <div style="margin-top:1rem;">
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.45rem; letter-spacing:1.5px; text-transform:uppercase; padding:0.3rem 0.6rem; border:1px solid rgba(0,229,255,0.15); color:var(--neon-cyan); border-radius:1px;">Bridges</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.45rem; letter-spacing:1.5px; text-transform:uppercase; padding:0.3rem 0.6rem; border:1px solid rgba(0,229,255,0.15); color:var(--neon-cyan); border-radius:1px; margin-left:0.3rem;">25 MPH</span>
+                    </div>
+                </div>
+
+                <!-- Flying V -->
+                <div style="background:rgba(20,14,24,0.8); padding:2.5rem; border:1px solid rgba(255,107,53,0.08); position:relative; overflow:hidden;">
+                    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--sunset-orange),var(--neon-pink));opacity:0.5;"></div>
+                    <div style="font-family:'Orbitron',sans-serif; font-size:0.5rem; letter-spacing:3px; color:var(--sunset-orange); text-shadow:0 0 10px rgba(255,107,53,0.5); text-transform:uppercase; margin-bottom:0.5rem;">Formation 2</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1.1rem; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--cream); margin-bottom:0.8rem;">Flying V</h3>
+                    <p style="font-size:0.85rem; color:var(--gray); line-height:1.7; margin-bottom:1.5rem;">Arrowhead across 3 lanes. Car #1 leads center, others fan out. Requires a wide, clear road. The drone shoots this from above.</p>
+                    <pre style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--neon-pink); line-height:1.8; background:rgba(0,0,0,0.3); padding:1rem; border-radius:4px; overflow-x:auto; text-shadow:0 0 8px var(--neon-pink-glow);">  Direction &rarr;
+
+          [911] out front
+              [1]           &larr; Center lead
+          [2]     [3]
+      [4]             [5]
+          [6]     [7]
+              [8]           &larr; Center tail
+          [RR] + [TRUCK] behind</pre>
+                    <div style="margin-top:1rem;">
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.45rem; letter-spacing:1.5px; text-transform:uppercase; padding:0.3rem 0.6rem; border:1px solid rgba(255,45,149,0.15); color:var(--neon-pink); border-radius:1px;">Highway</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.45rem; letter-spacing:1.5px; text-transform:uppercase; padding:0.3rem 0.6rem; border:1px solid rgba(255,45,149,0.15); color:var(--neon-pink); border-radius:1px; margin-left:0.3rem;">45 MPH</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.45rem; letter-spacing:1.5px; text-transform:uppercase; padding:0.3rem 0.6rem; border:1px solid rgba(255,45,149,0.15); color:var(--neon-pink); border-radius:1px; margin-left:0.3rem;">3 Lanes</span>
+                    </div>
+                </div>
+
+                <!-- Staggered -->
+                <div style="background:rgba(20,14,24,0.8); padding:2.5rem; border:1px solid rgba(0,229,255,0.08); position:relative; overflow:hidden;">
+                    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--neon-cyan),var(--neon-purple));opacity:0.5;"></div>
+                    <div style="font-family:'Orbitron',sans-serif; font-size:0.5rem; letter-spacing:3px; color:var(--neon-cyan); text-shadow:0 0 10px var(--neon-cyan-glow); text-transform:uppercase; margin-bottom:0.5rem;">Formation 3</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1.1rem; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--cream); margin-bottom:0.8rem;">Staggered</h3>
+                    <p style="font-size:0.85rem; color:var(--gray); line-height:1.7; margin-bottom:1.5rem;">Zipper pattern across lanes. This is the default when cruising between stops. Spread out, stay relaxed, keep pace with the car ahead of you.</p>
+                    <pre style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--neon-cyan); line-height:1.8; background:rgba(0,0,0,0.3); padding:1rem; border-radius:4px; overflow-x:auto; text-shadow:0 0 8px var(--neon-cyan-glow);">  Direction &rarr;
+
+  [911] ahead
+
+  Lane 1:  [1]         [4]         [7]
+  Lane 2:       [2]         [5]         [8]
+  Lane 3:            [3]         [6]
+
+  [RR] + [TRUCK] trailing</pre>
+                    <div style="margin-top:1rem;">
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.45rem; letter-spacing:1.5px; text-transform:uppercase; padding:0.3rem 0.6rem; border:1px solid rgba(0,229,255,0.15); color:var(--neon-cyan); border-radius:1px;">Default</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.45rem; letter-spacing:1.5px; text-transform:uppercase; padding:0.3rem 0.6rem; border:1px solid rgba(0,229,255,0.15); color:var(--neon-cyan); border-radius:1px; margin-left:0.3rem;">Between Stops</span>
+                    </div>
+                </div>
+
+                <!-- Echelon -->
+                <div style="background:rgba(20,14,24,0.8); padding:2.5rem; border:1px solid rgba(123,47,247,0.08); position:relative; overflow:hidden;">
+                    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--neon-purple),var(--sunset-yellow));opacity:0.5;"></div>
+                    <div style="font-family:'Orbitron',sans-serif; font-size:0.5rem; letter-spacing:3px; color:#a78bfa; text-shadow:0 0 10px var(--neon-purple-glow); text-transform:uppercase; margin-bottom:0.5rem;">Formation 4</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1.1rem; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--cream); margin-bottom:0.8rem;">Echelon</h3>
+                    <p style="font-size:0.85rem; color:var(--gray); line-height:1.7; margin-bottom:1.5rem;">Diagonal line. Looks great on approach shots. Merges naturally into single file when the road narrows.</p>
+                    <pre style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:#a78bfa; line-height:1.8; background:rgba(0,0,0,0.3); padding:1rem; border-radius:4px; overflow-x:auto; text-shadow:0 0 8px var(--neon-purple-glow);">  Direction &rarr;
+
+  Lane 1:  [1]
+  Lane 2:       [2]
+  Lane 3:            [3]
+  Lane 1:                 [4]
+  Lane 2:                      [5]  ...</pre>
+                    <div style="margin-top:1rem;">
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.45rem; letter-spacing:1.5px; text-transform:uppercase; padding:0.3rem 0.6rem; border:1px solid rgba(123,47,247,0.15); color:#a78bfa; border-radius:1px;">Approach</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.45rem; letter-spacing:1.5px; text-transform:uppercase; padding:0.3rem 0.6rem; border:1px solid rgba(123,47,247,0.15); color:#a78bfa; border-radius:1px; margin-left:0.3rem;">35 MPH</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="neon-divider"></div>
+
+    <!-- DRIVER RULES & RADIO -->
+    <section class="section-pad" id="rules" style="background:var(--dark);">
+        <div class="container">
+            <div class="reveal" style="text-align:center; margin-bottom:3rem;">
+                <p class="section-eyebrow">For Drivers</p>
+                <h2 class="section-title">What to Know</h2>
+                <p class="section-sub" style="margin:0 auto;">
+                    Nothing complicated. Just a few things so everything runs smooth.
+                </p>
+            </div>
+            <div class="rules-grid reveal" style="display:grid; grid-template-columns:1fr 1fr; gap:2px;">
+                <div style="background:rgba(20,14,24,0.8); padding:2.5rem; border:1px solid rgba(255,45,149,0.08);">
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; color:var(--neon-pink); text-shadow:0 0 10px var(--neon-pink-glow); margin-bottom:1.5rem; padding-bottom:0.8rem; border-bottom:1px solid rgba(255,255,255,0.06);">Basics</h3>
+                    <ul style="list-style:none;">
+                        <li style="font-size:0.95rem; color:rgba(255,255,255,0.8); padding:0.7rem 0 0.7rem 2rem; border-bottom:1px solid rgba(255,255,255,0.04); position:relative; line-height:1.6;">
+                            <span style="position:absolute;left:0;top:0.9rem;width:8px;height:8px;border-radius:50%;background:var(--neon-pink);box-shadow:0 0 8px var(--neon-pink-glow);"></span>
+                            <strong style="color:#fff;">You'll get a number (1&ndash;8).</strong> That's your position in the convoy. Same spot every time.
+                        </li>
+                        <li style="font-size:0.95rem; color:rgba(255,255,255,0.8); padding:0.7rem 0 0.7rem 2rem; border-bottom:1px solid rgba(255,255,255,0.04); position:relative; line-height:1.6;">
+                            <span style="position:absolute;left:0;top:0.9rem;width:8px;height:8px;border-radius:50%;background:var(--neon-pink);box-shadow:0 0 8px var(--neon-pink-glow);"></span>
+                            <strong style="color:#fff;">Match the lead car's speed.</strong> Smooth and steady. The footage looks better when everyone's in sync.
+                        </li>
+                        <li style="font-size:0.95rem; color:rgba(255,255,255,0.8); padding:0.7rem 0 0.7rem 2rem; border-bottom:1px solid rgba(255,255,255,0.04); position:relative; line-height:1.6;">
+                            <span style="position:absolute;left:0;top:0.9rem;width:8px;height:8px;border-radius:50%;background:var(--neon-pink);box-shadow:0 0 8px var(--neon-pink-glow);"></span>
+                            <strong style="color:#fff;">Stay with the group.</strong> We're getting specific shots at each stop &mdash; save solo drives for after.
+                        </li>
+                        <li style="font-size:0.95rem; color:rgba(255,255,255,0.8); padding:0.7rem 0 0.7rem 2rem; position:relative; line-height:1.6;">
+                            <span style="position:absolute;left:0;top:0.9rem;width:8px;height:8px;border-radius:50%;background:var(--neon-pink);box-shadow:0 0 8px var(--neon-pink-glow);"></span>
+                            <strong style="color:#fff;">If anything comes up, keep going.</strong> The Range Rover support car handles any issues.
+                        </li>
+                    </ul>
+                </div>
+                <div style="background:rgba(20,14,24,0.8); padding:2.5rem; border:1px solid rgba(0,229,255,0.08);">
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; color:var(--neon-cyan); text-shadow:0 0 10px var(--neon-cyan-glow); margin-bottom:1.5rem; padding-bottom:0.8rem; border-bottom:1px solid rgba(255,255,255,0.06);">Radio Calls</h3>
+                    <p style="font-size:0.8rem; color:var(--gray); margin-bottom:1rem; line-height:1.6;">Each car gets a walkie. Here's what you'll hear and what it means:</p>
+                    <div style="display:grid; gap:0.5rem;">
+                        <div style="display:flex; align-items:center; gap:1rem; padding:0.6rem 0; border-bottom:1px solid rgba(255,255,255,0.04);">
+                            <span style="font-family:'Orbitron',sans-serif; font-size:0.7rem; font-weight:800; color:var(--neon-cyan); text-shadow:0 0 10px var(--neon-cyan-glow); min-width:80px;">"LET'S GO"</span>
+                            <span style="font-size:0.85rem; color:rgba(255,255,255,0.6);">We're moving. Follow the car in front of you.</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:1rem; padding:0.6rem 0; border-bottom:1px solid rgba(255,255,255,0.04);">
+                            <span style="font-family:'Orbitron',sans-serif; font-size:0.7rem; font-weight:800; color:var(--sunset-orange); text-shadow:0 0 10px rgba(255,107,53,0.5); min-width:80px;">"HOLD UP"</span>
+                            <span style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Stay put. Hold your speed.</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:1rem; padding:0.6rem 0; border-bottom:1px solid rgba(255,255,255,0.04);">
+                            <span style="font-family:'Orbitron',sans-serif; font-size:0.7rem; font-weight:800; color:var(--neon-pink); text-shadow:0 0 10px var(--neon-pink-glow); min-width:80px;">"SHOOTING"</span>
+                            <span style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Drone's up. Hold your line and speed.</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:1rem; padding:0.6rem 0; border-bottom:1px solid rgba(255,255,255,0.04);">
+                            <span style="font-family:'Orbitron',sans-serif; font-size:0.7rem; font-weight:800; color:var(--neon-cyan); text-shadow:0 0 10px var(--neon-cyan-glow); min-width:80px;">"GOT IT"</span>
+                            <span style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Shot's done. Relax.</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:1rem; padding:0.6rem 0; border-bottom:1px solid rgba(255,255,255,0.04);">
+                            <span style="font-family:'Orbitron',sans-serif; font-size:0.7rem; font-weight:800; color:var(--sunset-yellow); text-shadow:0 0 10px rgba(255,215,0,0.4); min-width:80px;">"REGROUP"</span>
+                            <span style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Formation broke up. Spread out and we'll reset at the next stop.</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:1rem; padding:0.6rem 0;">
+                            <span style="font-family:'Orbitron',sans-serif; font-size:0.7rem; font-weight:800; color:var(--ferrari-red); text-shadow:0 0 10px rgba(220,38,38,0.5); min-width:80px;">"PULL OVER"</span>
+                            <span style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Something came up. Find a safe spot and stop.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Reset note -->
+            <div class="reveal" style="margin-top:2px; background:rgba(20,14,24,0.8); border:1px solid rgba(255,215,0,0.1); padding:1.5rem 2rem; display:flex; align-items:center; gap:1.5rem;">
+                <div style="flex-shrink:0; width:48px; height:48px; border-radius:50%; border:2px solid var(--sunset-yellow); display:flex; align-items:center; justify-content:center; box-shadow:0 0 20px rgba(255,215,0,0.15);">
+                    <span style="font-size:1.2rem;">&#128260;</span>
+                </div>
+                <p style="font-size:0.9rem; color:rgba(255,255,255,0.65); line-height:1.7;">
+                    <strong style="color:var(--sunset-yellow);">If a formation doesn't come together:</strong> No worries. Spread out, keep cruising, and we'll set it up again at the next clear stretch. Nobody's keeping score.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="neon-divider"></div>
+
+    <!-- SCHEDULE -->
+    <section class="section-pad" id="schedule" style="background:var(--black);">
+        <div class="container">
+            <div class="reveal" style="text-align:center; margin-bottom:3rem;">
+                <p class="section-eyebrow">Schedule</p>
+                <h2 class="section-title">Run of Show</h2>
+                <p class="section-sub" style="margin:0 auto;">
+                    Rough timeline for the day. Times will shift &mdash; just stay with the group.
+                </p>
+            </div>
+            <div class="reveal" style="position:relative; padding-left:3rem;">
+                <!-- Vertical line -->
+                <div style="position:absolute; left:1rem; top:0; bottom:0; width:2px; background:linear-gradient(180deg, var(--neon-pink), var(--neon-cyan), var(--neon-purple), var(--sunset-yellow), var(--neon-pink)); opacity:0.4;"></div>
+
+                <!-- Morning -->
+                <div style="position:relative; margin-bottom:3rem;">
+                    <div style="position:absolute; left:-2.35rem; top:0.2rem; width:16px; height:16px; border-radius:50%; background:var(--neon-pink); box-shadow:0 0 15px var(--neon-pink-glow);"></div>
+                    <div style="font-family:'Orbitron',sans-serif; font-size:0.5rem; letter-spacing:3px; color:var(--neon-pink); text-shadow:0 0 10px var(--neon-pink-glow); text-transform:uppercase; margin-bottom:0.3rem;">Morning</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--cream); margin-bottom:0.8rem;">Meet &amp; First Shots</h3>
+                    <div style="display:grid; grid-template-columns:auto 1fr; gap:0.3rem 1rem; font-size:0.85rem; color:rgba(255,255,255,0.6); line-height:1.7;">
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--neon-pink); font-weight:600;">ARRIVE</span><span>Show up at The Moore (4040 NE 2nd Ave). Cars are ready. Keys and walkthrough on site.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--neon-pink); font-weight:600;">BRIEFING</span><span>Quick rundown of the route, formations, and radio calls. 10 minutes.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--neon-pink); font-weight:600;">PHOTOS</span><span>Fleet lineup, group shot, individual car shots, drone overhead, engine start.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--neon-pink); font-weight:600;">ROLL OUT</span><span>Everybody in. Engines on. Convoy departs.</span>
+                    </div>
+                </div>
+
+                <!-- Late Morning -->
+                <div style="position:relative; margin-bottom:3rem;">
+                    <div style="position:absolute; left:-2.35rem; top:0.2rem; width:16px; height:16px; border-radius:50%; background:var(--sunset-orange); box-shadow:0 0 15px rgba(255,107,53,0.5);"></div>
+                    <div style="font-family:'Orbitron',sans-serif; font-size:0.5rem; letter-spacing:3px; color:var(--sunset-orange); text-shadow:0 0 10px rgba(255,107,53,0.5); text-transform:uppercase; margin-bottom:0.3rem;">Late Morning</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--cream); margin-bottom:0.8rem;">Bridge &amp; Mansion</h3>
+                    <div style="display:grid; grid-template-columns:auto 1fr; gap:0.3rem 1rem; font-size:0.85rem; color:rgba(255,255,255,0.6); line-height:1.7;">
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--sunset-orange); font-weight:600;">BRIDGE</span><span>Star Island Bridge in single file at 25 mph. Drone overhead. We'll do two passes.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--sunset-orange); font-weight:600;">MANSION</span><span>1221 W 48th St. Park on site. Pool area, group shots, hang out.</span>
+                    </div>
+                </div>
+
+                <!-- Midday -->
+                <div style="position:relative; margin-bottom:3rem;">
+                    <div style="position:absolute; left:-2.35rem; top:0.2rem; width:16px; height:16px; border-radius:50%; background:var(--neon-cyan); box-shadow:0 0 15px var(--neon-cyan-glow);"></div>
+                    <div style="font-family:'Orbitron',sans-serif; font-size:0.5rem; letter-spacing:3px; color:var(--neon-cyan); text-shadow:0 0 10px var(--neon-cyan-glow); text-transform:uppercase; margin-bottom:0.3rem;">Midday</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--cream); margin-bottom:0.8rem;">Yacht, Speed Run &amp; Ocean Drive</h3>
+                    <div style="display:grid; grid-template-columns:auto 1fr; gap:0.3rem 1rem; font-size:0.85rem; color:rgba(255,255,255,0.6); line-height:1.7;">
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--neon-cyan); font-weight:600;">YACHT</span><span>Board the Pardo. Drinks, photos, skyline views.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--neon-cyan); font-weight:600;">79TH ST</span><span>Open road segment. Rolling shots and engine sound capture.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--neon-cyan); font-weight:600;">OCEAN DR</span><span>Slow cruise past Art Deco row. 1500 Ocean Dr stop for photos.</span>
+                    </div>
+                </div>
+
+                <!-- Afternoon -->
+                <div style="position:relative; margin-bottom:3rem;">
+                    <div style="position:absolute; left:-2.35rem; top:0.2rem; width:16px; height:16px; border-radius:50%; background:var(--neon-purple); box-shadow:0 0 15px var(--neon-purple-glow);"></div>
+                    <div style="font-family:'Orbitron',sans-serif; font-size:0.5rem; letter-spacing:3px; color:#a78bfa; text-shadow:0 0 10px var(--neon-purple-glow); text-transform:uppercase; margin-bottom:0.3rem;">Afternoon</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--cream); margin-bottom:0.8rem;">Padel &amp; Seaplane</h3>
+                    <div style="display:grid; grid-template-columns:auto 1fr; gap:0.3rem 1rem; font-size:0.85rem; color:rgba(255,255,255,0.6); line-height:1.7;">
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:#a78bfa; font-weight:600;">CAUSEWAY</span><span>MacArthur Causeway. Flying V formation if the road is clear.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:#a78bfa; font-weight:600;">PADEL</span><span>Reserve Padel (1000 MacArthur Causeway). Racquets provided. Ferraris parked behind the glass.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:#a78bfa; font-weight:600;">SEAPLANE</span><span>Same complex. Line cars up with the seaplanes. Then fly over the route.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:#a78bfa; font-weight:600;">SOUTH POINTE</span><span>Golden hour stop. Ocean views. Group photo.</span>
+                    </div>
+                </div>
+
+                <!-- Evening -->
+                <div style="position:relative;">
+                    <div style="position:absolute; left:-2.35rem; top:0.2rem; width:16px; height:16px; border-radius:50%; background:var(--sunset-yellow); box-shadow:0 0 15px rgba(255,215,0,0.4);"></div>
+                    <div style="font-family:'Orbitron',sans-serif; font-size:0.5rem; letter-spacing:3px; color:var(--sunset-yellow); text-shadow:0 0 10px rgba(255,215,0,0.3); text-transform:uppercase; margin-bottom:0.3rem;">Evening</div>
+                    <h3 style="font-family:'Orbitron',sans-serif; font-size:1rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--cream); margin-bottom:0.8rem;">Curated &amp; Wrap</h3>
+                    <div style="display:grid; grid-template-columns:auto 1fr; gap:0.3rem 1rem; font-size:0.85rem; color:rgba(255,255,255,0.6); line-height:1.7;">
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--sunset-yellow); font-weight:600;">CURATED</span><span>2100 NE 2nd Ave. Park the Ferraris inside the showroom. Final photos next to some of the rarest cars on earth.</span>
+                        <span style="font-family:'Orbitron',sans-serif; font-size:0.6rem; color:var(--sunset-yellow); font-weight:600;">WRAP</span><span>Drinks, recap the day, relive the highlights. Photos delivered in 2 weeks, film in 6.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="neon-divider"></div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div style="font-family:'Orbitron',sans-serif; font-size:1.2rem; letter-spacing:6px; margin-bottom:1rem;">
+            <a href="/" style="text-decoration:none;">
+                <span class="fl-cyan">Off</span>
+                <span class="fl-pink"> to the </span>
+                <span class="fl-cyan">Races</span>
+            </a>
+        </div>
+        <p style="font-size:0.85rem; color:var(--gray); margin-bottom:0.5rem;">April 2, 2026 &bull; Miami</p>
+        <p style="font-family:'Orbitron',sans-serif; font-size:0.45rem; letter-spacing:2px; color:rgba(255,255,255,0.3); text-transform:uppercase;">Private Event &mdash; Invitation Only</p>
+    </footer>
+
+    <script>
+        // Nav scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        // Reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('visible');
+            });
+        }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

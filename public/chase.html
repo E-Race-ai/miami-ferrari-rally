@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locations — OFF TO THE RACES</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0408;
+            --dark: #0f0a12;
+            --neon-pink: #ff2d95;
+            --neon-pink-glow: rgba(255,45,149,0.4);
+            --neon-cyan: #00e5ff;
+            --neon-cyan-glow: rgba(0,229,255,0.4);
+            --sunset-yellow: #ffd700;
+            --cream: #f0e6f6;
+            --white: #ffffff;
+            --gray: #8888aa;
+            --grid-color: rgba(123,47,247,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--cream);
+        }
+
+        .retro-grid {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background:
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse at 50% 30%, rgba(0,0,0,0.4) 0%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 30%, rgba(0,0,0,0.4) 0%, transparent 70%);
+        }
+
+        .page {
+            position: relative; z-index: 1;
+            max-width: 600px; margin: 0 auto; padding: 3rem 1.5rem 2rem;
+        }
+
+        /* HEADER */
+        .hdr { text-align: center; margin-bottom: 1.5rem; }
+        .hdr .logo {
+            font-family: 'Orbitron', sans-serif; font-size: 0.6rem; letter-spacing: 3px;
+            text-transform: uppercase; margin-bottom: 0.8rem;
+        }
+        .hdr .logo a { text-decoration: none; }
+        .c { color: var(--neon-cyan); }
+        .p { color: var(--neon-pink); }
+        .g { color: var(--gray); font-size: 0.5rem; }
+
+        .hdr h1 {
+            font-family: 'Orbitron', sans-serif; font-size: 1.4rem; font-weight: 800;
+            letter-spacing: 4px; text-transform: uppercase; color: var(--cream); margin-bottom: 0.3rem;
+        }
+        .hdr .sub { font-size: 0.85rem; color: var(--gray); }
+
+        .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--neon-pink), var(--neon-cyan), transparent); opacity: 0.25; margin: 1.5rem 0; }
+
+        /* HELP TEXT */
+        .help {
+            text-align: center; font-size: 0.8rem; color: var(--gray); line-height: 1.6;
+            margin-bottom: 1.5rem; padding: 0.8rem 1rem;
+            border: 1px solid rgba(0,229,255,0.1); border-radius: 4px;
+            background: rgba(0,229,255,0.03);
+        }
+        .help strong { color: var(--neon-cyan); }
+
+        /* LOCATION ROW */
+        .loc {
+            display: grid; grid-template-columns: 80px 1fr; gap: 1rem;
+            align-items: center; padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .loc-img {
+            width: 80px; height: 60px; object-fit: cover; border-radius: 4px; display: block;
+        }
+
+        .loc-label {
+            font-family: 'Orbitron', sans-serif; font-size: 0.45rem; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--neon-pink); margin-bottom: 0.15rem;
+        }
+        .loc-name {
+            font-family: 'Orbitron', sans-serif; font-size: 0.8rem; font-weight: 700;
+            letter-spacing: 1.5px; text-transform: uppercase; color: var(--white); margin-bottom: 0.2rem;
+        }
+        .loc-addr a {
+            font-size: 0.85rem; color: var(--neon-cyan); text-decoration: none;
+        }
+        .loc-addr a:hover { text-decoration: underline; color: var(--white); }
+
+        .loc-time {
+            font-size: 0.75rem; color: var(--gray); margin-top: 0.15rem;
+        }
+
+        .loc-icons {
+            display: flex; gap: 0.5rem; margin-top: 0.35rem; flex-wrap: wrap;
+        }
+        .loc-icon {
+            font-size: 0.65rem; color: var(--gray); display: flex; align-items: center; gap: 0.25rem;
+        }
+        .loc-icon span { font-size: 0.8rem; }
+
+        footer {
+            text-align: center; padding: 2rem 0 1rem;
+            font-size: 0.7rem; color: rgba(255,255,255,0.2);
+        }
+
+        @media (max-width: 400px) {
+            .loc { grid-template-columns: 60px 1fr; gap: 0.8rem; }
+            .loc-img { width: 60px; height: 45px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="retro-grid"></div>
+
+<div class="page">
+
+    <div class="hdr">
+        <div class="logo"><a href="/"><span class="c">Off</span> <span class="g">to the</span> <span class="p">Races</span></a></div>
+        <h1>Where We'll Be</h1>
+        <div class="sub">April 2, 2026 &mdash; Key Locations</div>
+    </div>
+
+    <div class="help">
+        <strong>Running late or got separated?</strong><br>
+        Tap any address to open directions. Head to the next stop on the list &mdash; we'll be moving in order.
+    </div>
+
+    <div class="loc">
+        <img src="images/the-moore.jpg" alt="The Moore" class="loc-img">
+        <div>
+            <div class="loc-label">Start</div>
+            <div class="loc-name">The Moore</div>
+            <div class="loc-addr"><a href="https://maps.apple.com/?address=4040+NE+2nd+Ave,+Miami,+FL+33137" target="_blank">4040 NE 2nd Ave, Miami, FL 33137</a></div>
+            <div class="loc-time">Morning &mdash; Meet here first</div>
+            <div class="loc-icons">
+                <div class="loc-icon"><span>&#128701;</span> Restrooms</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="loc">
+        <img src="images/IMG_7459.jpg" alt="Will's Mansion" class="loc-img">
+        <div>
+            <div class="loc-label">Stop 2</div>
+            <div class="loc-name">Will's Mansion</div>
+            <div class="loc-addr"><a href="https://maps.apple.com/?address=1221+W+48th+St,+Miami+Beach,+FL+33140" target="_blank">1221 W 48th St, Miami Beach, FL 33140</a></div>
+            <div class="loc-time">Late morning</div>
+            <div class="loc-icons">
+                <div class="loc-icon"><span>&#128701;</span> Restrooms</div>
+                <div class="loc-icon"><span>&#127860;</span> Lunch</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="loc">
+        <img src="images/ocean-drive-day.jpg" alt="Ocean Drive" class="loc-img">
+        <div>
+            <div class="loc-label">Stop 3</div>
+            <div class="loc-name">Ocean Drive</div>
+            <div class="loc-addr"><a href="https://maps.apple.com/?address=1500+Ocean+Dr,+Miami+Beach,+FL" target="_blank">1500 Ocean Dr #100, Miami Beach, FL</a></div>
+            <div class="loc-time">Midday</div>
+        </div>
+    </div>
+
+    <div class="loc">
+        <img src="images/reserve-padel-new.jpg" alt="Reserve Padel" class="loc-img">
+        <div>
+            <div class="loc-label">Stop 4</div>
+            <div class="loc-name">Reserve Padel</div>
+            <div class="loc-addr"><a href="https://maps.apple.com/?address=1000+MacArthur+Causeway,+Miami,+FL+33132" target="_blank">1000 MacArthur Causeway, Miami, FL 33132</a></div>
+            <div class="loc-time">Afternoon &mdash; Watson Island</div>
+            <div class="loc-icons">
+                <div class="loc-icon"><span>&#128701;</span> Restrooms</div>
+                <div class="loc-icon"><span>&#127863;</span> Snacks &amp; refreshments</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="loc">
+        <img src="images/curated-new.jpg" alt="Curated Auto Miami" class="loc-img">
+        <div>
+            <div class="loc-label">Finish</div>
+            <div class="loc-name">Curated Auto Miami</div>
+            <div class="loc-addr"><a href="https://maps.apple.com/?address=2100+NE+2nd+Ave,+Miami,+FL+33137" target="_blank">2100 NE 2nd Ave, Miami, FL 33137</a></div>
+            <div class="loc-time">Evening &mdash; Final stop</div>
+            <div class="loc-icons">
+                <div class="loc-icon"><span>&#128701;</span> Restrooms</div>
+                <div class="loc-icon"><span>&#127870;</span> Champagne &amp; caviar</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <footer>
+        Off to the Races &bull; Private Event
+    </footer>
+
+</div>
+
+</body>
+</html>
